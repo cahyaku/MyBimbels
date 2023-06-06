@@ -5,14 +5,15 @@ require_once "Search.php";
 
 function deleteStudents(array $students, array $classes, array $enrollments, array $lecturers): array
 {
-    while (true) {
-        if (count($students) == 0) {
-            echo "Empty Data" . "\n";
-            return $students;
-        } else {
-            // tampilkan menu pencarian
-            $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
-            if ($searchResult == true) {
+    // while (true) {
+    if (count($students) == 0) {
+        echo "Empty Data" . "\n";
+        return $students;
+    } else {
+        // tampilkan menu pencarian
+        $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
+        if (count($searchResult) > 0) {
+            while (true) {
                 echo "\n" . "Pilih data siswa yang akan dihapus? " . "\n";
                 echo "Please type ordinal number above: ";
                 $input = getNumeric();
@@ -20,7 +21,7 @@ function deleteStudents(array $students, array $classes, array $enrollments, arr
 
                 // cek jika yang diinputan oleh user lebih dari jumlah data yang ada dan lebih besar dari 0
                 if ($input > count($searchResult) || $input <= 0) {
-                    echo "Ordinal number was not found" . "\n";
+                    echo "Ordinal number was not found!" . "\n";
                     break;
                 } else {
                     $id = $searchResult[$indexToDelete]["id"];
@@ -32,13 +33,13 @@ function deleteStudents(array $students, array $classes, array $enrollments, arr
                             // cek data siswa yang akan dihapus
                             // hanya siswa yang tidak memiliki kelas yang bisa dihapus
                             if (countClasses($classes, $students[$i]["id"], true) > 0) {
-                                echo "Data siswa" . ' "' . $students[$indexToDelete]["name"] . '" ';
-                                echo "Maaf data siswa tidak dapat dihapus karena sudah memiliki data kelas" . "\n";
+                                // echo "Data siswa" . ' "' . $students[$indexToDelete]["name"] . '" ';
+                                echo "Maaf data siswa" . $students[$indexToDelete]["name"] . "tidak dapat dihapus karena sudah memiliki data kelas" . "\n";
                             } else {
                                 $sentence = "Yakin untuk menghapus data siswa" . ' "' . $students[$indexToDelete]["name"] . '" ' . "(y/n)?";
                                 if (isContinue($sentence) == true) {
                                     unset($students[$i]);
-                                    echo "Data siswa" . $students[$indexToDelete]["name"] . "telah dihapus!" . "\n";
+                                    echo "Data siswa " . '"' . $students[$indexToDelete]["name"] . '"' .  " telah dihapus!" . "\n";
                                 }
                                 break;
                             }
@@ -47,10 +48,12 @@ function deleteStudents(array $students, array $classes, array $enrollments, arr
                     $students = array_values($students);
                     break;
                 }
-            } else {
-                echo "Data was not found";
             }
         }
+        // else {
+        //     echo "Data was not found";
+        // }
+        // }
     }
     return $students;
 }

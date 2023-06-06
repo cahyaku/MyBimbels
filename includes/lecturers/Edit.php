@@ -5,14 +5,15 @@ require_once "Search.php";
 
 function editDataPengajar(array $lecturers, array $classes): array
 {
-    while (true) {
-        if (count($lecturers) == 0) {
-            echo "Empty Data" . "\n";
-            return $lecturers;
-        } else {
-            // tampilkan menu pencarian
-            $searchResult = searchPengajar($lecturers, $classes);
-            if ($searchResult != "") {
+    // while (true) {
+    if (count($lecturers) == 0) {
+        echo "Empty Data" . "\n";
+        return $lecturers;
+    } else {
+        // tampilkan menu pencarian
+        $searchResult = searchPengajar($lecturers, $classes);
+        if (count($searchResult) > 0) {
+            while (true) {
                 // minta inputan data yang akan diubah dari user
                 echo "\n" . "Data pengajar yang akan diubah ? " . "\n";
                 echo "Please type ordinal number above: ";
@@ -21,7 +22,7 @@ function editDataPengajar(array $lecturers, array $classes): array
 
                 // cek jika inputan dari user lebih dari jumlah data yang ada dan jika kurang dari atau sama dengan 0
                 if ($input > count($searchResult) || $input <= 0) {
-                    echo "Ordinal number was not found" . "\n";
+                    echo "Ordinal number was not found!" . "\n";
                     break;
                 } else {
                     $id = $searchResult[$indexToModify]["id"];
@@ -51,6 +52,7 @@ function editDataPengajar(array $lecturers, array $classes): array
                 break;
             }
         }
+        // }
     }
     return $lecturers;
 }

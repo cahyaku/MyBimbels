@@ -68,18 +68,18 @@ $classes = [
     array(
         // siswa "kumala"
         "id" => 2,
-        "name" => "KUTER",
+        "name" => "Suka Matimatika",
         "price" => 800.000,
         "subject" => "Matimatika",
         "lecturerId" => 2,
         "ongoing" => true,
         "startedAt" => 1124457990,
-        "closedAt" => "1 desember 2021",
+        "closedAt" => 1684410490,
     ),
     array(
         // siswa "kumala"
         "id" => 3,
-        "name" => "CEP",
+        "name" => "Suka Fisika",
         "price" => 600.000,
         "subject" => "Fisika",
         "lecturerId" => 2,
@@ -90,11 +90,11 @@ $classes = [
     array(
         // kelas yang belum memiliki siswa
         "id" => 4,
-        "name" => "Suka Fisika",
+        "name" => "Kimia Menyenangakan",
         "price" => 600.000,
-        "subject" => "Fisika",
+        "subject" => "Kimia",
         "lecturerId" => 2,
-        "ongoing" => true,
+        "ongoing" => false,
         "startedAt" => 1794411490,
         "closedAt" => null,
     ),

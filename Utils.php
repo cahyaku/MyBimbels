@@ -109,10 +109,11 @@ function askForNisn(): int
  * 
  * @return string nama yang telah diinputkan 
  */
-function askForName(): string
+function askForName($sentence): string
 {
     while (true) {
-        echo "name : ";
+        // echo "name : ";
+        echo $sentence;
         $name = getString();
         if ($name == "") {
             echo "please type your name " . "\n";
@@ -161,7 +162,8 @@ function askForLastEducation(): string
 
 function askForLectureData($nik, $id): array
 {
-    $name = askForName();
+    $sentence = "Nama pengajar: ";
+    $name = askForName($sentence);
     $lastEducation = askForLastEducation();
 
     return [
@@ -174,7 +176,8 @@ function askForLectureData($nik, $id): array
 
 function askForStudentData($nisn, $id): array
 {
-    $name = askForName();
+    $sentence = "Nama siswa: ";
+    $name = askForName($sentence);
     $lastEducation = askForLastEducation();
 
     return [
@@ -204,22 +207,22 @@ function askForStudentData($nisn, $id): array
 //     }
 // }
 
-/**
- * funtion untuk menanyakan end date
- * 
- * @return string isinya adalah end date 
- */
-function askForClosed(): string
-{
-    while (true) {
-        echo "Closed At: ";
-        $closedAt =  trim(fgets(STDIN));
-        if ($closedAt == "") {
-            $closedAt == "now";
-        }
-        return $closedAt;
-    }
-}
+// /**
+//  * funtion untuk menanyakan end date
+//  * 
+//  * @return string isinya adalah end date 
+//  */
+// function askForClosed(): string
+// {
+//     while (true) {
+//         echo "Closed At: ";
+//         $closedAt =  trim(fgets(STDIN));
+//         if ($closedAt == "") {
+//             $closedAt == "now";
+//         }
+//         return $closedAt;
+//     }
+// }
 
 /**
  * function mengecek NIK ada atau tidak
@@ -320,26 +323,26 @@ function countClasses(array $classes, $lecturerId, $ongoing)
     return $count;
 }
 
-//function untuk mengecek apakah kelas berjalan atau selesai
-function kelasBerjalan(array $classes, $lecturerId, $ongoing): bool
-{
-    for ($i = 0; $i < count($classes); $i++) {
-        if ($classes[$i]["ongoing"] == $ongoing && $lecturerId == $classes[$i]["lecturerId"]) {
-            return true;
-        }
-        return false;
-    }
-}
+// //function untuk mengecek apakah kelas berjalan atau selesai
+// function kelasBerjalan(array $classes, $lecturerId, $ongoing): bool
+// {
+//     for ($i = 0; $i < count($classes); $i++) {
+//         if ($classes[$i]["ongoing"] == $ongoing && $lecturerId == $classes[$i]["lecturerId"]) {
+//             return true;
+//         }
+//         return false;
+//     }
+// }
 
-function countStudents(array $studentId, array $classes, array $enrollments)
-{
-    $count = 0;
-    for ($i = 0; $i < count($studentId); $i++) {
-        if ($studentId[$i]["id"] == $enrollments && $classes == $studentId[$i]["id"])
-            $count++;
-    }
-    return $count;
-}
+// function countStudents(array $studentId, array $classes, array $enrollments)
+// {
+//     $count = 0;
+//     for ($i = 0; $i < count($studentId); $i++) {
+//         if ($studentId[$i]["id"] == $enrollments && $classes == $studentId[$i]["id"])
+//             $count++;
+//     }
+//     return $count;
+// }
 
 /**
  * function untuk meghitung jumlah omzet
@@ -355,6 +358,10 @@ function countRevenue(array $classes, $lecturerId)
     return number_format($sum);
 }
 
+
+/**
+ * function untuk menampikan informasi dari siswa
+ */
 function showStudentsInfo($students, $classes, $enrollments, $lecturers)
 {
     if (count($students) == 0) {
@@ -387,40 +394,37 @@ function showStudentsInfo($students, $classes, $enrollments, $lecturers)
 
             // tampilkan kelas
             for ($i = 0; $i < count($studentClasses); $i++) {
-                if (kelasBerjalan($studentClasses, $lecturers[$i]["id"], true)) {
-                    echo "\n" . "   - Kelas \"" . $studentClasses[$i]["name"] . "\"" .  " - " . $studentClasses[$i]["subject"] . " (berjalan)" . PHP_EOL;
-                } else {
-                    // (kelasBerjalan($studentClasses, $lecturers[$i]["id"], false)) 
-                    echo "\n" . "   - Kelas \"" . $studentClasses[$i]["name"] . "\"" . " (selesai)" . PHP_EOL;
+                $berjalanStr = "selesai";
+                if ($studentClasses[$i]["ongoing"] == true) {
+                    $berjalanStr = "berjalan";
                 }
 
-                // $ongoing = "ongoing";
-                // echo "\n" . "   - Kelas \"" . $studentClasses[$i]["name"] . "\"" . $ongoing == "ongoing" ? "berjalan" : "selesai" . PHP_EOL;
-                // echo "\n" . "   - Kelas \"" . $studentClasses[$i]["name"] . "\"" . PHP_EOL;
+                echo "\n" . "   - Kelas \"" . $studentClasses[$i]["name"] . "\"" .  " - " . $studentClasses[$i]["subject"] . " ($berjalanStr)" . PHP_EOL;
+
                 // pengajarnya gimana?
+                // loop untuk menampilkan pengajar
                 for ($j = 0; $j < count($classLecturers); $j++) {
                     if ($classLecturers[$j]["id"] == $studentClasses[$i]["lecturerId"]) {
-
-                        $siPengajar = $classLecturers[$j]["name"];
-                        echo "        - Pengajar: " . $siPengajar . PHP_EOL;
+                        echo "        - Pengajar: " . $classLecturers[$j]["name"] . PHP_EOL;
                     }
                     // echo "        - Pengajar: " . $siPengajar . PHP_EOL;
                 }
-                echo "        - Harga kelas: Rp " . $studentClasses[$i]["price"] . PHP_EOL;
+                // tampilkan harga dari kelas 
+                echo "        - Harga kelas: Rp " . number_format($studentClasses[$i]["price"]) . PHP_EOL;
+
+                // cek tanggal ditutup 
                 $closedAt = $studentClasses[$i]["closedAt"];
                 if ($closedAt == null) {
                     $closedAt = "sekarang";
                 } else {
-                    $closedAt = $studentClasses[$i]["closedAt"];
+                    $closedAt = date('j F Y', $studentClasses[$i]["closedAt"]);
                 }
 
                 // ini untuk waktu saat ini
                 // $startedAt = time();
                 // $date = date('j F Y  H : i');
-
-                $date = date('j F Y ', $classes[$i]["startedAt"]);
-                // echo "        - " . $date . "  - (" . $closedAt . ")" . "\n";
-                // echo "        - " . $studentClasses[$i]["startedAt"] . "  - (" . $closedAt . ")" . "\n";
+                // cek tanggal mulai
+                $date = date('j F Y', $classes[$i]["startedAt"]);
                 echo "        - " . $date . "  - (" . $closedAt . ")" . "\n";
             }
         }
@@ -428,29 +432,33 @@ function showStudentsInfo($students, $classes, $enrollments, $lecturers)
     }
 }
 
-function ShowClassesInfo($classes, $lecturers)
+/**
+ * function untuk menampilkan informasi kelas
+ */
+function ShowClassesInfo($classes)
 {
     if (count($classes) == 0) {
         echo "Empty Data";
     } else {
         // loop untuk mendapatkan kelas
         for ($i = 0; $i < count($classes); $i++) {
-            if (kelasBerjalan($classes, $lecturers[$i]["id"], true)) {
-                echo "   - Kelas \"" . $classes[$i]["name"] . "\"" .  " - " . $classes[$i]["subject"] . " (berjalan)" . PHP_EOL;
-            } else {
-                // (kelasBerjalan($studentClasses, $lecturers[$i]["id"], false)) 
-                echo "   - Kelas \"" . $classes[$i]["name"] . "\"" . " (selesai)" . PHP_EOL;
-            }
 
-            // loop untuk mendapatkan nama pengajar
-            for ($j = 0; $j < count($lecturers); $j++) {
-                if ($lecturers[$j]["id"] == $classes[$i]["id"]) {
-                    $pengajar = $lecturers[$i]["name"];
-                    echo "Pengajar" . $pengajar;
-                }
+            $berjalanStr = "selesai";
+            if ($classes[$i]["ongoing"] == true) {
+                $berjalanStr = "berjalan";
             }
         }
+        // tampilkan nama kelas, mata pelajaran dan keterangan apakah kelas masih berjalan atau tidak
+        echo "\n" . "   - Kelas \"" . $classes[$i]["name"] . "\"" .  " - " . $classes[$i]["subject"] . " ($berjalanStr)" . PHP_EOL;
+        // // loop untuk mendapatkan nama pengajar
+        // for ($j = 0; $j < count($lecturers); $j++) {
+        //     if ($lecturers[$j]["id"] == $classes[$i]["lecturerId"]) {
+
+        //         echo "      - Pengajar " . $lecturers[$j]["name"] . PHP_EOL;
+        //     }
+        // }
     }
+    // }
 }
 
 /**

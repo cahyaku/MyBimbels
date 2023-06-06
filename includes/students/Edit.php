@@ -5,14 +5,16 @@ require_once "Search.php";
 
 function editDataStudents(array $students, array $classes, $enrollments, $lecturers): array
 {
-    while (true) {
-        if (count($students) == 0) {
-            echo "Empty Data" . "\n";
-            return $students;
-        } else {
-            // tampilkan menu pencarian
-            $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
-            if ($searchResult != "") {
+    // while (true) {
+    if (count($students) == 0) {
+        echo "Empty Data" . "\n";
+        return $students;
+    } else {
+
+        // tampilkan menu pencarian
+        $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
+        if (count($searchResult) > 0) {
+            while (true) {
                 // minta inputan data yang akan diubah dari user
                 echo "\n" . "Data siswa yang akan diubah ? " . "\n";
                 echo "Please type ordinal number above: ";
@@ -49,6 +51,7 @@ function editDataStudents(array $students, array $classes, $enrollments, $lectur
                 break;
             }
         }
+        // }
     }
     return $students;
 }

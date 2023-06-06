@@ -59,7 +59,7 @@ function startKelolaPengajar()
         $menu = getNumeric();
         if ($menu == 1) {
             echo "cari" . "\n";
-            searchLecturers($lecturers, $classes);
+            searchPengajar($lecturers, $classes);
         } else if ($menu == 2) {
             echo "tambahkan data lecturers" . "\n";
             $lecturers = addLecturersData($lecturers, $classes);
@@ -105,13 +105,14 @@ function startKelolaSiswa()
     global $enrollments;
     global $lecturers;
     // global $lecturers;
+
     $exit = false;
     while ($exit == false) {
         kelolaSiswa();
         $menu = getNumeric();
         if ($menu == 1) {
             echo "cari";
-            searchStudents($students, $classes, $enrollments, $lecturers);
+            searchSiswa($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 2) {
             echo "tambahkan data siswa" . "\n";
             $students = addStudentsData($students, $classes);
