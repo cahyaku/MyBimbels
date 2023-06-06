@@ -9,16 +9,22 @@ $enrollments = [
         "classId" => 1,
         "studentId" => 1,
     ),
-    // Kumala (KUTER)
+    // Kumala kelas (KUTER)
     array(
         "id" => 1,
         "classId" => 2,
         "studentId" => 2,
     ),
-    // kumala (Flying Horses)
+    // kumala kelas (Flying Horses)
     array(
         "id" => 2,
         "classId" => 1,
+        "studentId" => 2,
+    ),
+    // kumala kelas (CEP)
+    array(
+        "id" => 2,
+        "classId" => 3,
         "studentId" => 2,
     ),
 ];
@@ -49,6 +55,7 @@ $students = [
 
 $classes = [
     array(
+        // siswa "cahya" dan "kumala"
         "id" => 1,
         "name" => "Flying Horses",
         "price" => 900.000,
@@ -59,24 +66,36 @@ $classes = [
         "closedAt" => null,
     ),
     array(
+        // siswa "kumala"
         "id" => 2,
         "name" => "KUTER",
         "price" => 800.000,
-        // "subject" => "Matimatika",
+        "subject" => "Matimatika",
         "lecturerId" => 2,
         "ongoing" => true,
         "startedAt" => 1124457990,
         "closedAt" => "1 desember 2021",
     ),
     array(
-        // kelas yang belum memiliki siswa
+        // siswa "kumala"
         "id" => 3,
         "name" => "CEP",
         "price" => 600.000,
-        // "subject" => "Fisika",
+        "subject" => "Fisika",
         "lecturerId" => 2,
         "ongoing" => true,
         "startedAt" => 1684411490,
+        "closedAt" => null,
+    ),
+    array(
+        // kelas yang belum memiliki siswa
+        "id" => 4,
+        "name" => "Suka Fisika",
+        "price" => 600.000,
+        "subject" => "Fisika",
+        "lecturerId" => 2,
+        "ongoing" => true,
+        "startedAt" => 1794411490,
         "closedAt" => null,
     ),
 ];

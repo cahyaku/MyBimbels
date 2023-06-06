@@ -10,6 +10,7 @@ require_once "SearchStudents.php";
 require_once "CreateStudents.php";
 require_once "EditStudents.php";
 require_once "DeleteStudents.php";
+require_once "SearchClasses.php";
 
 /**
  * fungsi untuk menampilkan menu utama 
@@ -146,12 +147,17 @@ function kelolaKelas()
  */
 function startKelolaKelas()
 {
+    global $students;
+    global $classes;
+    global $enrollments;
+    global $lecturers;
     $exit = false;
     while ($exit == false) {
         kelolaKelas();
         $menu = getNumeric();
         if ($menu == 1) {
             echo "cari" . "\n";
+            searchClasses($classes, $enrollments, $lecturers);
         } else if ($menu == 2) {
             echo "Tambah" . "\n";
         } else if ($menu == 3) {
