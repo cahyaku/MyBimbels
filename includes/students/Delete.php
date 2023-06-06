@@ -1,9 +1,9 @@
 <?php
 
-require_once "Utils.php";
-require_once "SearchStudents.php";
+require_once __DIR__ . "/../../Utils.php";
+require_once "Search.php";
 
-function deleteStudets(array $students, array $classes, array $enrollments, array $lecturers): array
+function deleteStudents(array $students, array $classes, array $enrollments, array $lecturers): array
 {
     while (true) {
         if (count($students) == 0) {

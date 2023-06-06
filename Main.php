@@ -1,16 +1,22 @@
 <?php
 
+
 require_once "Utils.php";
-require_once "Create.php";
-require_once "Main.php";
-require_once "Edit.php";
-require_once "search.php";
-require_once "Delete.php";
-require_once "SearchStudents.php";
-require_once "CreateStudents.php";
-require_once "EditStudents.php";
-require_once "DeleteStudents.php";
-require_once "SearchClasses.php";
+
+// pengajar
+require_once __DIR__ . "/includes/lecturers/Create.php";
+require_once __DIR__ . "/includes/lecturers/Edit.php";
+require_once __DIR__ . "/includes/lecturers/Delete.php";
+require_once __DIR__ . "/includes/lecturers/Search.php";
+
+// siswa
+require_once __DIR__ . "/includes/students/Create.php";
+require_once __DIR__ . "/includes/students/Edit.php";
+require_once __DIR__ . "/includes/students/Delete.php";
+require_once __DIR__ . "/includes/students/Search.php";
+
+// classes
+require_once __DIR__ . "/includes/classes/Search.php";
 
 /**
  * fungsi untuk menampilkan menu utama 
@@ -114,7 +120,7 @@ function startKelolaSiswa()
             $students = editDataStudents($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 4) {
             echo "hapus" . "\n";
-            $students = deleteStudets($students, $classes, $enrollments, $lecturers);
+            $students = deleteStudents($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 5) {
             showAllStudents($students, $classes);
         } else if ($menu == 6) {

@@ -1,6 +1,6 @@
 <?php
 
-include "main.php";
+include "Main.php";
 
 $enrollments = [
     // cahya (Flying Horses)

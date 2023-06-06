@@ -1,6 +1,6 @@
 <?php
 
-require_once "Utils.php";
+require_once __DIR__ . "/../../Utils.php";
 require_once "Search.php";
 
 function deleteLecturers(array $lecturers, array $classes): array
