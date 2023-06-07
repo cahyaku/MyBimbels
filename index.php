@@ -59,18 +59,18 @@ $classes = [
         // siswa "cahya" dan "kumala"
         "id" => 1,
         "name" => "Flying Horses",
-        "price" => 900.000,
+        "price" => 900000,
         "subject" => "English",
         "lecturerId" => 1,
         "ongoing" => true,
-        "startedAt" => 1684410490,
+        "startedAt" => 1686117435,
         "closedAt" => null,
     ),
     array(
         // siswa "kumala"
         "id" => 2,
         "name" => "Suka Matimatika",
-        "price" => 800.000,
+        "price" => 800000,
         "subject" => "Matimatika",
         "lecturerId" => 2,
         "ongoing" => true,
@@ -81,7 +81,7 @@ $classes = [
         // siswa "kumala"
         "id" => 3,
         "name" => "Suka Fisika",
-        "price" => 600.000,
+        "price" => 600000,
         "subject" => "Fisika",
         "lecturerId" => 2,
         "ongoing" => true,
@@ -93,7 +93,7 @@ $classes = [
         // kelas yang belum meiliki siswa bisa dihapus
         "id" => 4,
         "name" => "Kimia Menyenangakan",
-        "price" => 600.000,
+        "price" => 600000,
         "subject" => "Kimia",
         "lecturerId" => 2,
         "ongoing" => false,

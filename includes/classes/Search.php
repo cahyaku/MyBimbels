@@ -32,10 +32,10 @@ function searchClasses($classes, $lecturers, $students): array
             echo "Data kelas tidak ditemukan!" . "\n";
         } else {
             // loop untuk menampilkan data kelas
-            // for ($i = 0; $i < count($searchResult); $i++) :
-            showClassesInfo($classes, $lecturers, $students);
-            // break;
-            // endfor;
+            for ($i = 0; $i < count($searchResult); $i++) :
+                showClassesInfo($searchResult, $lecturers, $students);
+                break;
+            endfor;
             // break;
         }
     }
