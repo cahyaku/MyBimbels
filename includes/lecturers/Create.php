@@ -6,7 +6,7 @@ require_once __DIR__ . "/../../Utils.php";
  * fungsi untuk menambahkan data pengajar
  * 
  * @param array $lecturers berisi data pengajar
- * @return array data pengajar yang telah di tambahkan
+ * @return array data pengajar yang telah ditambahkan
  * 
  */
 function addLecturersData(array $lecturers, $id): array
@@ -23,8 +23,7 @@ function addLecturersData(array $lecturers, $id): array
 
             $lecturers[] = askForLectureData($nik, $id);
             echo "Data pengajar telah disimpan!" . "\n";
-            // echo "Data pengajar " . $lecturers["name"] .  "telah disimpan!" . "\n";
-
+            // echo "Data pengajar " . $lecturers["name"] .  "telah disimpan!" . "\n"
             // return $lecturers;
             break;
         }

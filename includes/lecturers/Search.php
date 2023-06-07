@@ -69,7 +69,7 @@ function searchPengajar(array $persons, $classes): array
         if (count($searchResult) == 0) {
             echo "Data pengajar tidak ditemukan!" . "\n";
         } else {
-            // loop untuk menampilkan data
+            // loop untuk menampilkan data pengajar
             for ($i = 0; $i < count($searchResult); $i++) :
                 showTeacher($searchResult, $classes);
                 // showTeacher($persons, $classes);

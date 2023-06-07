@@ -164,7 +164,7 @@ function startKelolaKelas()
         $menu = getNumeric();
         if ($menu == 1) {
             echo "cari" . "\n";
-            searchClasses($classes, $enrollments, $lecturers);
+            searchClasses($classes, $lecturers, $students);
         } else if ($menu == 2) {
             echo "Tambah" . "\n";
         } else if ($menu == 3) {

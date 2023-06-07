@@ -45,6 +45,7 @@ $students = [
         "lastEducation" => "SMA NEGERI 1 KUTA",
     ),
     // data siswa yang belum memiliki kelas
+    // siswa yang belum pernah mengikuti kelas bisa dihapus
     array(
         "id" => 0,
         "name" => "Ayong",
@@ -88,7 +89,8 @@ $classes = [
         "closedAt" => null,
     ),
     array(
-        // kelas yang belum memiliki siswa
+        // data kelas yang belum memiliki siswa
+        // kelas yang belum meiliki siswa bisa dihapus
         "id" => 4,
         "name" => "Kimia Menyenangakan",
         "price" => 600.000,
@@ -114,11 +116,19 @@ $lecturers = [
         "lastEducation" => "S1 MATEMATIKA",
     ),
     // data pengajar yang belum memiliki siswa
+    // pengajar yang belum memiliki kelas bisa dihapus
     array(
         "id" => 3,
         "nik" => "7878",
         "name" => "NIA",
         "lastEducation" => "S1 FISIKA",
+    ),
+    // data pengajar yang belum memiliki kelas
+    array(
+        "id" => 4,
+        "nik" => "09090",
+        "name" => "NIAT",
+        "lastEducation" => "S1 BIOLOGI",
     ),
 ];
 main();

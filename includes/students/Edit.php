@@ -10,8 +10,7 @@ function editDataStudents(array $students, array $classes, $enrollments, $lectur
         echo "Empty Data" . "\n";
         return $students;
     } else {
-
-        // tampilkan menu pencarian
+        // tampilkan menu pencarian, untuk mencari nama siswa yang akan diubah 
         $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
         if (count($searchResult) > 0) {
             while (true) {

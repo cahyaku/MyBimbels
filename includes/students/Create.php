@@ -6,7 +6,7 @@ require_once __DIR__ . "/../../Utils.php";
  * fungsi untuk menambahkan data pengajar
  * 
  * @param array $siswa berisi data siswa
- * @return array data siswa yang telah di tambahkan
+ * @return array data siswa yang telah ditambahkan
  * 
  */
 function addStudentsData(array $students, $id): array

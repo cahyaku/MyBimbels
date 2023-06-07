@@ -40,10 +40,9 @@ function deleteLecturers(array $lecturers, array $classes): array
                             } else {
                                 // $sentence = "Yakin untuk menghapus data pengajar" . ' "' . $lecturers[$indexToDelete]["name"] . '" ' . "(y/n)?";
                                 $sentence = "Yakin untuk menghapus data pengajar" . ' "' . $lecturers[$i]["name"] . '" ' . "(y/n)?";
-
                                 if (isContinue($sentence) == true) {
+                                    echo "Data pengajar " . '"' . $lecturers[$i]["name"] . '"' . " telah dihapus!" . "\n";
                                     unset($lecturers[$i]);
-                                    echo "Data pengajar " . '"' . $lecturers[$indexToDelete]["name"] . '"' . " telah dihapus!" . "\n";
                                 }
                                 break;
                             }
