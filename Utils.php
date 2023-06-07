@@ -34,6 +34,7 @@
 //         return [];
 //     }
 // }
+
 function generateId(array $array): int
 {
     if (count($array) == 0) {
@@ -61,22 +62,6 @@ function getString(): string
     // }
     // return "";
 }
-
-// /**
-//  * function untuk mencari person yang ke-index berdasarkan nomor NIK 
-//  * 
-//  * @return int
-//  */
-// function getPersonIndex($array, $nik): int
-// {
-//     for ($i = 0; $i < count($array); $i++) :
-//         if ($nik == $array[$i]["nik"]) {
-//             return $i;
-//         }
-//     endfor;
-//     // isinya -1 jika tidak ditemukan, atau 0
-//     return -1;
-// }
 
 /**
  * function untuk menanyakan data NIK person
@@ -112,7 +97,6 @@ function askForNisn(): int
     }
 }
 
-
 /**
  * function untuk menanyakan nama person
  * 
@@ -126,7 +110,7 @@ function askForName($sentence): string
         $name = getString();
         if ($name == "") {
             echo "please type your name " . "\n";
-            // cek jika inputan  yang dimasukan melebihi batas yang di tentukan 
+            // cek jika inputan  yang dimasukan melebihi batas yang ditentukan 
         } else if (strlen($name) > 30) {
             echo "masukan inputan nama maksimal 30 karakter" . "\n";
         } else {
@@ -140,14 +124,14 @@ function askForName($sentence): string
  * 
  * @return string nama yang telah diinputkan 
  */
-function askForMapel(): string
+function askForSubject(): string
 {
     while (true) {
         echo "mata pelajaran : ";
         $mapel = getString();
         if ($mapel == "") {
             echo "silahkan ketik mata pelajaran yang benar " . "\n";
-            // cek jika inputan  yang dimasukan melebihi batas yang di tentukan 
+            // cek jika inputan  yang dimasukan melebihi batas yang ditentukan 
         } else if (strlen($mapel) > 100) {
             echo "masukan inputan nama mata pelajaran maksimal 100 karakter" . "\n";
         } else {
@@ -197,40 +181,39 @@ function askForStudentData($nisn, $id): array
     ];
 }
 
-// /**
-//  * function untuk menanyakan started date school dari person 
-//  * 
-//  * @return string started date school
-//  */
-// function askForStartedDate(): string
+// function askForClassData()
 // {
-//     while (true) {
-//         echo "Started Date: ";
-//         $startedDate = getString();
-//         if ($startedDate == "") {
-//             echo "Please type the started date" . "\n";
-//         } else {
-//             return $startedDate;
-//         }
-//     }
+//     $sentence = "Nama pengajar: ";
+//     $name = askForName($sentence);
+//     $subject = askForSubject();
+//     $price = askForStartedDate();
+
+//     return [
+//         "namaKelas" => $name,
+//         "subject" => $subject,
+//         "price" => $price,
+//     ];
 // }
 
-// /**
-//  * funtion untuk menanyakan end date
-//  * 
-//  * @return string isinya adalah end date 
-//  */
-// function askForClosed(): string
-// {
-//     while (true) {
-//         echo "Closed At: ";
-//         $closedAt =  trim(fgets(STDIN));
-//         if ($closedAt == "") {
-//             $closedAt == "now";
-//         }
-//         return $closedAt;
-//     }
-// }
+/**
+ * function untuk menanyakan started date school dari person 
+ * 
+ * @return string started date school
+ */
+function askForStartedDate(): string
+{
+    while (true) {
+        echo "Started Date: ";
+        $startedDate = getString();
+        if ($startedDate == "") {
+            echo "Please type the started date" . "\n";
+        } else {
+            return $startedDate;
+        }
+    }
+}
+
+
 
 /**
  * function mengecek NIK ada atau tidak
@@ -240,7 +223,7 @@ function askForStudentData($nisn, $id): array
  * @param @id int | null
  * @return bool jika nik ditemukan maka return true, dan sebaliknya
  */
-function isNikExists(array $array, int $nik, int $id): bool
+function isNikExists(array $array, int $nik, $id): bool
 {
     for ($i = 0; $i < count($array); $i++) :
         // ini pengecekan NIK exists saat penambahan data baru
@@ -259,7 +242,7 @@ function isNikExists(array $array, int $nik, int $id): bool
     return false;
 }
 
-function isNisnExists(array $array, $nisn, $id): bool
+function isNisnExists(array $array, int $nisn, $id): bool
 {
     for ($i = 0; $i < count($array); $i++) :
         if ($nisn == $array[$i]["nisn"]) {
@@ -312,9 +295,9 @@ function showTeacher(array $lecturers, array $classes)
             $countBerjalan = countClasses($classes, $lecturers[$i]["id"], true);
             $countDiTutup = countClasses($classes, $lecturers[$i]["id"], false);
             $omzet = countRevenue($classes, $lecturers[$i]["id"]);
-            echo "  - " . $countBerjalan . " kelas berjalan" . "\n";
-            echo "  - " . $countDiTutup . " kelas ditutup" . "\n";
-            echo "  -  Omzet Rp. " . $omzet . "\n";
+            echo "   - " . $countBerjalan . " kelas berjalan" . "\n";
+            echo "   - " . $countDiTutup . " kelas ditutup" . "\n";
+            echo "   - Omzet Rp. " . $omzet . "\n";
         }
         // break;
         echo "\n";
@@ -346,8 +329,6 @@ function countClasses(array $classes, $lecturerId, $ongoing)
 //     }
 // }
 
-
-
 /**
  * function untuk meghitung jumlah omzet
  */
@@ -361,17 +342,6 @@ function countRevenue(array $classes, $lecturerId)
     }
     return number_format($sum);
 }
-
-// function countStudents(array $students, array $enrollments)
-// {
-//     $count = 0;
-//     for ($i = 0; $i < count($students); $i++) {
-//         if ($students[$i]["id"] == $enrollments[$i]["classId"])
-//             $count++;
-//     }
-//     return $count;
-// }
-
 
 // function untuk mencari jumlah siswa
 function countStudents(array $enrollments, int $classId)
@@ -531,6 +501,20 @@ function showAllStudents(array $students)
             echo "\n" . "Name: " . $students[$i]["name"] . "\n";
             echo "NISN: " . $students[$i]["nisn"] . "\n";
             echo "Last Education: " . $students[$i]["lastEducation"] . "\n";
+        }
+        echo "\n";
+    }
+}
+
+function showAllClasses(array $classes)
+{
+    if (count($classes) == 0) {
+        echo "Empty Data";
+    } else {
+        for ($i = 0; $i < count($classes); $i++) {
+            echo "\n" . "Nama kelas: " . $classes[$i]["name"] . "\n";
+            echo "Nama matapelajaran: " . $classes[$i]["subject"] . "\n";
+            echo "Harga: " . $classes[$i]["price"] . "\n";
         }
         echo "\n";
     }

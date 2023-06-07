@@ -17,6 +17,7 @@ require_once __DIR__ . "/includes/students/Search.php";
 
 // classes
 require_once __DIR__ . "/includes/classes/Search.php";
+require_once __DIR__ . "/includes/classes/Create.php";
 
 /**
  * fungsi untuk menampilkan menu utama 
@@ -167,6 +168,7 @@ function startKelolaKelas()
             searchClasses($enrollments, $classes, $lecturers, $students);
         } else if ($menu == 2) {
             echo "Tambah" . "\n";
+            $classes = addClassesData($classes);
         } else if ($menu == 3) {
             echo "edit" . "\n";
         } else if ($menu == 4) {
@@ -175,11 +177,14 @@ function startKelolaKelas()
             echo " Tutup kelas" . "\n";
         } else  if ($menu == 6) {
             echo "Hapus" . "\n";
-        } else  if ($menu == 7) {
+        } else if ($menu == 7) {
+            echo " show all classes data \n";
+            showAllClasses($classes);
+        } else  if ($menu == 8) {
             echo "Menu utama" . "\n";
             $exit = true;
         } else {
-            echo " Please input number 1, 2, 3, 4, 5, 6, or 7" . "\n";
+            echo " Please input number 1, 2, 3, 4, 5, 6, 7 or 8" . "\n";
         }
     }
 }

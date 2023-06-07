@@ -13,7 +13,6 @@ function addLecturersData(array $lecturers): array
 {
     while (true) {
         // meminta inputan NIK
-
         $nik = askForNik();
         // cek NIK ada atau tidak 
         if (isNikExists(array: $lecturers, nik: $nik, id: null) == true) {
