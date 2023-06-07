@@ -47,7 +47,7 @@ $students = [
     // data siswa yang belum memiliki kelas
     // siswa yang belum pernah mengikuti kelas bisa dihapus
     array(
-        "id" => 0,
+        "id" => 3,
         "name" => "Ayong",
         "nisn" => "7878",
         "lastEducation" => "SMA NEGERI 1 DENPASAR",

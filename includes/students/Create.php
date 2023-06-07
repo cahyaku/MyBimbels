@@ -9,7 +9,7 @@ require_once __DIR__ . "/../../Utils.php";
  * @return array data siswa yang telah ditambahkan
  * 
  */
-function addStudentsData(array $students, $id): array
+function addStudentsData(array $students): array
 {
     while (true) {
         // meminta inputan NISN
@@ -17,10 +17,13 @@ function addStudentsData(array $students, $id): array
         $nisn = askForNisn();
         // cek NISN ada atau tidak 
         if (isNisnExists(array: $students, nisn: $nisn, id: null) == true) {
-            echo "sorry, NIK: \"$nisn\" already exists" . "\n";
+            echo "sorry, NISN: \"$nisn\" already exists" . "\n";
         } else {
             // simpan data dalam array
-            $students[] = askForStudentData($nisn, $id);
+            $students[] = askForStudentData(
+                $nisn,
+                generateId($students)
+            );
             echo "Data siswa telah disimpan!" . "\n";
 
             break;

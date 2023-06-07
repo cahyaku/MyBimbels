@@ -34,6 +34,13 @@
 //         return [];
 //     }
 // }
+function generateId(array $array): int
+{
+    if (count($array) == 0) {
+        return 1;
+    }
+    return end($array)["id"] + 1;
+}
 
 // fungsi untuk validasi int
 function getNumeric(): int
@@ -228,19 +235,23 @@ function askForStudentData($nisn, $id): array
 /**
  * function mengecek NIK ada atau tidak
  * 
+ * @param $array array of data
+ * @param $nik int NIK yang akan dicek ada/tidaknya
+ * @param @id int | null
  * @return bool jika nik ditemukan maka return true, dan sebaliknya
  */
-function isNikExists(array $array, $nik, $id): bool
+function isNikExists(array $array, int $nik, int $id): bool
 {
     for ($i = 0; $i < count($array); $i++) :
-        if ($nik == $array[$i]["nik"]) {
-            // jika $id ada nilainya maka ini adalah pengecekan NIK misalkan pada saat EDIT
-            if ($id != null) {
-                if ($id != $array[$i]["id"]) {
-                    return true;
-                }
-            } else {
-                // ini adalah pengecekan misalkan pada saat CREATE dimana $id tidak diperlukan
+        // ini pengecekan NIK exists saat penambahan data baru
+        if ($id == null) {
+            if ($nik == $array[$i]["nik"]) {
+                return true;
+            }
+        }
+        // ini pengecekan NIK exists saat edit data yg sudah ada
+        else {
+            if ($nik == $array[$i]["nik"] && $id != $array[$i]["id"]) {
                 return true;
             }
         }
@@ -363,18 +374,30 @@ function countRevenue(array $classes, $lecturerId)
 
 
 // function untuk mencari jumlah siswa
-function countStudents(array $enrollments, $students)
+function countStudents(array $enrollments, int $classId)
 {
+    $countStudents = 0;
     for ($index = 0; $index < count($enrollments); $index++) {
-        echo $enrollments[$index]["studentId"];
+        if ($enrollments[$index]["classId"] == $classId) {
+            $countStudents++;
+        }
+    }
+    return $countStudents;
+}
 
-        $countStudents = 0;
-        for ($i = 0; $i < count($students); $i++) {
-            if ($students[$i]["id"] == $enrollments[$index]["studentId"]) {
-                $countStudents++;
+function getStudentsByClassId(array $enrollments, array $students, int $classId): array
+{
+    $temp = [];
+    for ($index = 0; $index < count($enrollments); $index++) {
+        if ($enrollments[$index]["classId"] == $classId) {
+            $theStudent = getFirstDataById($students, $enrollments[$index]["studentId"]);
+            if ($theStudent != null) {
+                // masukkan ke daftar siswa
+                $temp[] = $theStudent;
             }
         }
     }
+    return $temp;
 }
 
 /**
@@ -453,7 +476,7 @@ function showStudentsInfo($students, $classes, $enrollments, $lecturers)
 /**
  * function untuk menampilkan informasi kelas
  */
-function ShowClassesInfo($classes, $lecturers, $students)
+function showClassesInfo($enrollments, $classes, $lecturers, $students)
 {
     if (count($classes) == 0) {
         echo "Empty Data";
@@ -466,8 +489,6 @@ function ShowClassesInfo($classes, $lecturers, $students)
                 $berjalanStr = "berjalan";
             }
             echo "\n" . ($i + 1) . "   - Kelas \"" . $classes[$i]["name"] . "\"" .  " - " . $classes[$i]["subject"] . " ($berjalanStr)" . PHP_EOL;
-            // break;
-
 
             // tampilkan nama kelas, mata pelajaran dan keterangan apakah kelas masih berjalan atau tidak
             // loop untuk mendapatkan nama pengajar
@@ -482,12 +503,17 @@ function ShowClassesInfo($classes, $lecturers, $students)
             echo "      - Dimulai " . $date . "\n";
             echo "      - Harga kelas Rp " . number_format($classes[$i]["price"]) . "\n";
 
-            // $countStudents = countStudents($classes, $students[$i]["id"]);
-            // echo "      - Jumlah siswa: " . $countStudents;
-            echo "      - Jumlah siswa: " . "\n";
+            // dapatkan jumlah siswa dari si kelas
+            $countStudents = countStudents($enrollments, $classes[$i]["id"]);
+            echo "      - Jumlah siswa: $countStudents\n";
+
+            // dapatkan para siswa dari si kelas
+            $classStudents = getStudentsByClassId($enrollments, $students, $classes[$i]["id"]);
+            foreach ($classStudents as $student) {
+                echo "          - " . $student["name"] . " (NISN: " . $student["nisn"] . ")\n";
+            }
         }
     }
-    // }
 }
 
 /**
@@ -510,21 +536,18 @@ function showAllStudents(array $students)
     }
 }
 
-// /**
-//  * function untuk menampilkan kelas-kelas dari siswa dengan id = $studentsId, dengan filter ongoing sesuai $ongoing (bisa true atau false)
-//  */
-// function showClassesOfStudent(array $classes, $studentId, $ongoing)
-// {
-//     if (count($classes) == 0) {
-//         echo "Empty data";
-//     } else {
-//         for ($i = 0; $i < count($classes); $i++) {
-//             if ($classes[$i]["ongoing"] == $ongoing && $studentId == $classes[$i]["id"]);
-//             echo "\n" . "   - Kelas " . ' "' . $classes[$i]["name"] . '"';
-//             break;
-//         }
-//     }
-// }
+/**
+ * 
+ */
+function getFirstDataById(array $array, int $id)
+{
+    for ($i = 0; $i < count($array); $i++) {
+        if ($array[$i]["id"] == $id) {
+            return $array[$i];
+        }
+    }
+    return null;
+}
 
 /**
  * Helper function untuk mendapatkan data dari $array, yang memiliki key of array bernama $idName dengan nilai = $id

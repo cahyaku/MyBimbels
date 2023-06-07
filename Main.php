@@ -62,7 +62,7 @@ function startKelolaPengajar()
             searchPengajar($lecturers, $classes);
         } else if ($menu == 2) {
             echo "tambahkan data lecturers" . "\n";
-            $lecturers = addLecturersData($lecturers, $classes);
+            $lecturers = addLecturersData($lecturers);
         } else if ($menu == 3) {
             echo "edit person" . "\n";
             $lecturers = editDataPengajar($lecturers, $classes);
@@ -115,7 +115,7 @@ function startKelolaSiswa()
             searchSiswa($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 2) {
             echo "tambahkan data siswa" . "\n";
-            $students = addStudentsData($students, $classes);
+            $students = addStudentsData($students);
         } else if ($menu == 3) {
             echo "edit person" . "\n";
             $students = editDataStudents($students, $classes, $enrollments, $lecturers);
@@ -164,7 +164,7 @@ function startKelolaKelas()
         $menu = getNumeric();
         if ($menu == 1) {
             echo "cari" . "\n";
-            searchClasses($classes, $lecturers, $students);
+            searchClasses($enrollments, $classes, $lecturers, $students);
         } else if ($menu == 2) {
             echo "Tambah" . "\n";
         } else if ($menu == 3) {

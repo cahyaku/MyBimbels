@@ -8,7 +8,7 @@ require_once __DIR__ . "/../../Utils.php";
  * @param array $persons data dari siswa yang akan diproses
  * @param array $classes data kelas yang dimiliki oleh siswa
  */
-function searchClasses($classes, $lecturers, $students): array
+function searchClasses($enrollments, $classes, $lecturers, $students): array
 {
     if (count($classes) == 0) {
         echo "empty data" . "\n";
@@ -33,7 +33,7 @@ function searchClasses($classes, $lecturers, $students): array
         } else {
             // loop untuk menampilkan data kelas
             for ($i = 0; $i < count($searchResult); $i++) :
-                showClassesInfo($searchResult, $lecturers, $students);
+                showClassesInfo($enrollments, $searchResult, $lecturers, $students);
                 break;
             endfor;
             // break;

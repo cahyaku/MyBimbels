@@ -9,7 +9,7 @@ require_once __DIR__ . "/../../Utils.php";
  * @return array data pengajar yang telah ditambahkan
  * 
  */
-function addLecturersData(array $lecturers, $id): array
+function addLecturersData(array $lecturers): array
 {
     while (true) {
         // meminta inputan NIK
@@ -20,8 +20,7 @@ function addLecturersData(array $lecturers, $id): array
             echo "sorry, NIK: \"$nik\" already exists" . "\n";
         } else {
             // simpan data dalam array
-
-            $lecturers[] = askForLectureData($nik, $id);
+            $lecturers[] = askForLectureData($nik, generateId($lecturers));
             echo "Data pengajar telah disimpan!" . "\n";
             // echo "Data pengajar " . $lecturers["name"] .  "telah disimpan!" . "\n"
             // return $lecturers;
