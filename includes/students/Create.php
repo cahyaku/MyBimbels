@@ -13,8 +13,10 @@ function addStudentsData(array $students): array
 {
     while (true) {
         // meminta inputan NISN
-
-        $nisn = askForNisn();
+        echo "\n" . "PENAMBAHAN DATA SISWA BARU" . "\n";
+        $sentence1 = "NISN: ";
+        $sentence2 = "Silahkan masukan data NISN dengan benar!";
+        $nisn = askForNumber($sentence1, $sentence2);
         // cek NISN ada atau tidak 
         if (isNisnExists(array: $students, nisn: $nisn, id: null) == true) {
             echo "sorry, NISN: \"$nisn\" already exists" . "\n";

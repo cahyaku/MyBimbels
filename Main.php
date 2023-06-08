@@ -16,8 +16,10 @@ require_once __DIR__ . "/includes/students/Delete.php";
 require_once __DIR__ . "/includes/students/Search.php";
 
 // classes
-require_once __DIR__ . "/includes/classes/Search.php";
 require_once __DIR__ . "/includes/classes/Create.php";
+require_once __DIR__ . "/includes/classes/Edit.php";
+require_once __DIR__ . "/includes/classes/Search.php";
+require_once __DIR__ . "/includes/classes/Delete.php";
 
 /**
  * fungsi untuk menampilkan menu utama 
@@ -62,7 +64,7 @@ function startKelolaPengajar()
             echo "cari" . "\n";
             searchPengajar($lecturers, $classes);
         } else if ($menu == 2) {
-            echo "tambahkan data lecturers" . "\n";
+            // echo "tambahkan data lecturers" . "\n";
             $lecturers = addLecturersData($lecturers);
         } else if ($menu == 3) {
             echo "edit person" . "\n";
@@ -115,7 +117,7 @@ function startKelolaSiswa()
             echo "cari";
             searchSiswa($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 2) {
-            echo "tambahkan data siswa" . "\n";
+            // echo "tambahkan data siswa" . "\n";
             $students = addStudentsData($students);
         } else if ($menu == 3) {
             echo "edit person" . "\n";
@@ -146,7 +148,8 @@ function kelolaKelas()
     echo "4. Pendaftaran siswa" . "\n";
     echo "5. Tutup kelas" . "\n";
     echo "6. Hapus" . "\n";
-    echo "7. Menu utama" . "\n";
+    echo "7. Show all classes" . "\n";
+    echo "8. Menu utama" . "\n";
     echo "Pilih menu: ";
 }
 
@@ -167,16 +170,18 @@ function startKelolaKelas()
             echo "cari" . "\n";
             searchClasses($enrollments, $classes, $lecturers, $students);
         } else if ($menu == 2) {
-            echo "Tambah" . "\n";
-            $classes = addClassesData($classes);
+            // echo "Tambah" . "\n";
+            $classes = addClassesData($classes, $lecturers);
         } else if ($menu == 3) {
             echo "edit" . "\n";
+            $classes = editClassData($classes, $enrollments, $lecturers, $students);
         } else if ($menu == 4) {
             echo "Pendaftaran siswa" . "\n";
         } else if ($menu == 5) {
             echo " Tutup kelas" . "\n";
         } else  if ($menu == 6) {
             echo "Hapus" . "\n";
+            $classes = deleteClasses($classes, $enrollments, $lecturers, $students);
         } else if ($menu == 7) {
             echo " show all classes data \n";
             showAllClasses($classes);

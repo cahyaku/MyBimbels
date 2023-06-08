@@ -64,35 +64,20 @@ function getString(): string
 }
 
 /**
- * function untuk menanyakan data NIK person
+ * function untuk menanyakan data yang berupa int 
  * 
- * @return int angka dari NIK person
+ * @param string $sentence1 untuk mengisi kalimat ke-1 saat meminta inputan
+ * @param string $sentence2 untuk mengisi kalimat ke-2 saat inputan itu kosong(empty data)
  */
-function askForNik(): int
+function askForNumber($sentence1, $sentence2): int
 {
     while (true) {
-        echo "NIK: ";
-        $nik = getNumeric();
-        // $nik = preg_quote(getString());
-        // cek jika nik tidak ada atau nik kosong
-        if ($nik == 0) {
-            echo "Please tpye your NIK " . "\n";
+        echo $sentence1;
+        $harga = getNumeric();
+        if ($harga == 0) {
+            echo $sentence2 . "\n";
         } else {
-            return $nik;
-        }
-    }
-}
-
-function askForNisn(): int
-{
-    while (true) {
-        echo "NISN: ";
-        $nisn = getNumeric();
-        // cek jika nisn tidak ada atau jika nisn itu kosong
-        if ($nisn == 0) {
-            echo "please type your NISN" . "\n";
-        } else {
-            return $nisn;
+            return $harga;
         }
     }
 }
@@ -128,7 +113,7 @@ function askForSubject(): string
 {
     while (true) {
         echo "mata pelajaran : ";
-        $mapel = getString();
+        $mapel = preg_quote(getString());
         if ($mapel == "") {
             echo "silahkan ketik mata pelajaran yang benar " . "\n";
             // cek jika inputan  yang dimasukan melebihi batas yang ditentukan 
@@ -181,19 +166,24 @@ function askForStudentData($nisn, $id): array
     ];
 }
 
-// function askForClassData()
-// {
-//     $sentence = "Nama pengajar: ";
-//     $name = askForName($sentence);
-//     $subject = askForSubject();
-//     $price = askForStartedDate();
+function askForClassData($id): array
+{
+    $sentence = "Nama Kelas: ";
+    $name = askForName($sentence);
+    $subject = askForSubject();
+    $sentence1 = "Harga: ";
+    $sentence2 = "Silahkan masukan harga kelas!";
+    $price = askForNumber($sentence1, $sentence2);
+    $startedAt = askForStartedDate();
 
-//     return [
-//         "namaKelas" => $name,
-//         "subject" => $subject,
-//         "price" => $price,
-//     ];
-// }
+    return [
+        "id" => $id,
+        "name" => $name,
+        "subject" => $subject,
+        "price" => $price,
+        "startedAt" => $startedAt,
+    ];
+}
 
 /**
  * function untuk menanyakan started date school dari person 
@@ -212,8 +202,6 @@ function askForStartedDate(): string
         }
     }
 }
-
-
 
 /**
  * function mengecek NIK ada atau tidak
@@ -405,6 +393,7 @@ function showStudentsInfo($students, $classes, $enrollments, $lecturers)
 
             // tampilkan kelas
             for ($i = 0; $i < count($studentClasses); $i++) {
+                // untuk mengecek apakah kelas sedang berjalan atau tidak
                 $berjalanStr = "selesai";
                 if ($studentClasses[$i]["ongoing"] == true) {
                     $berjalanStr = "berjalan";
@@ -422,7 +411,6 @@ function showStudentsInfo($students, $classes, $enrollments, $lecturers)
                 }
                 // tampilkan harga dari kelas 
                 echo "        - Harga kelas: Rp " . number_format($studentClasses[$i]["price"]) . PHP_EOL;
-
                 // cek tanggal ditutup 
                 $closedAt = $studentClasses[$i]["closedAt"];
                 if ($closedAt == null) {
@@ -512,9 +500,12 @@ function showAllClasses(array $classes)
         echo "Empty Data";
     } else {
         for ($i = 0; $i < count($classes); $i++) {
-            echo "\n" . "Nama kelas: " . $classes[$i]["name"] . "\n";
-            echo "Nama matapelajaran: " . $classes[$i]["subject"] . "\n";
-            echo "Harga: " . $classes[$i]["price"] . "\n";
+            echo "\n" . ($i + 1) .  ". Nama kelas: " . $classes[$i]["name"] . "\n";
+            echo "    - Nama matapelajaran: " . $classes[$i]["subject"] . "\n";
+            echo "    - Harga Rp " . number_format($classes[$i]["price"]) . "\n";
+            $date = date('j F Y', $classes[$i]["startedAt"]);
+            // echo "    - Tanggal dimulai: " . $classes[$i]["startedAt"] . "\n";
+            echo "    - Tanggal dimulai: " . $date . "\n";
         }
         echo "\n";
     }
@@ -572,11 +563,6 @@ function getEnrollmentsByStudentId(int $studentId, array $enrollments): array
 {
     return getDataFromArrayUsingId($enrollments, $studentId, "studentId");
 }
-
-// function getEnrollmentsByClassId(int $classId, array $enrollments): array
-// {
-//     return getDataFromArrayUsingId($enrollments, $classId, "classId");
-// }
 
 /**
  * function untuk mendapatkan kelas dari classId

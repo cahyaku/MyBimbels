@@ -36,7 +36,9 @@ function editDataStudents(array $students, array $classes, $enrollments, $lectur
                             // tampilkan pesan nama siswa yang akan diubah
                             echo "Mengubah data" . ' "' . $students[$i]["name"] . '"' . "\n";
                             // minta inputan nisn dari user
-                            $nisn = askForNisn();
+                            $sentence1 = "NISN: ";
+                            $sentence2 = "Silahkan masukan data NISN dengan benar!";
+                            $nisn = askForNumber($sentence1, $sentence2);
                             if (isNisnExists($students, $nisn, $id) == false) {
                                 $students[$i] = askForStudentData($nisn, $id);
                                 echo "Data siswa " . '"' . $students[$i]["name"] . '"' .  " telah diperbarui!" . "\n";

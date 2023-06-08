@@ -13,11 +13,15 @@ function addLecturersData(array $lecturers): array
 {
     while (true) {
         // meminta inputan NIK
-        $nik = askForNik();
+        echo "\n" . "PENAMBAHAN DATA PENGJAR BARU" . "\n";
+        $sentence1 = "NIK: ";
+        $sentence2 = "Silahkan masukan data NIK dengan benar!";
+        $nik = askForNumber($sentence1, $sentence2);
         // cek NIK ada atau tidak 
         if (isNikExists(array: $lecturers, nik: $nik, id: null) == true) {
             echo "sorry, NIK: \"$nik\" already exists" . "\n";
         } else {
+
             // simpan data dalam array
             $lecturers[] = askForLectureData($nik, generateId($lecturers));
             echo "Data pengajar telah disimpan!" . "\n";

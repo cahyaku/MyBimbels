@@ -5,25 +5,25 @@ include "Main.php";
 $enrollments = [
     // cahya (Flying Horses)
     array(
-        "id" => 0,
+        "id" => 1,
         "classId" => 1,
         "studentId" => 1,
     ),
-    // Kumala kelas (KUTER)
+    // Kumala kelas (Suka Matimatika)
     array(
-        "id" => 1,
+        "id" => 2,
         "classId" => 2,
         "studentId" => 2,
     ),
     // kumala kelas (Flying Horses)
     array(
-        "id" => 2,
+        "id" => 3,
         "classId" => 1,
         "studentId" => 2,
     ),
-    // kumala kelas (CEP)
+    // kumala kelas (Suka fisika)
     array(
-        "id" => 2,
+        "id" => 4,
         "classId" => 3,
         "studentId" => 2,
     ),
@@ -37,7 +37,7 @@ $students = [
         "nisn" => "6767",
         "lastEducation" => "SMA NEGERI 1 BATURTI",
     ),
-    // kelas (KUTER)
+    // kelas (Suka matimatika, flying horses, suka fisika)
     array(
         "id" => 2,
         "name" => "Kumala",
@@ -90,14 +90,14 @@ $classes = [
     ),
     array(
         // data kelas yang belum memiliki siswa
-        // kelas yang belum meiliki siswa bisa dihapus
+        // kelas yang belum meliki siswa bisa dihapus
         "id" => 4,
         "name" => "Kimia Menyenangakan",
         "price" => 600000,
         "subject" => "Kimia",
         "lecturerId" => 2,
         "ongoing" => false,
-        "startedAt" => 1794411490,
+        "startedAt" => 1686191629,
         "closedAt" => null,
     ),
 ];

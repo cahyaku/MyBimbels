@@ -42,3 +42,41 @@ function searchClasses($enrollments, $classes, $lecturers, $students): array
     // }
     return $searchResult;
 }
+
+function searchLecturers(array $persons, $classes): array
+{
+    if (count($persons) == 0) {
+        echo "empty data" . "\n";
+    } else {
+        // while (true) {
+        // meminta inputan nama pengajar dari user
+        echo "\n" . "Pilih Pengajar" . "\n";
+        echo "Nama pengajar: ";
+        $inputDataPerson = preg_quote(getString());
+
+        echo "Hasil pencarian: " . "\n";
+        $searchResult = [];
+        // loop untuk mendapatkan pengajar
+        for ($i = 0; $i < count($persons); $i++) {
+            if (preg_match("/$inputDataPerson/i", $persons[$i]["name"])) {
+                if (in_array($persons[$i]["nik"], $searchResult) == false) {
+                    $searchResult[] = $persons[$i];
+                }
+            }
+        }
+
+        if (count($searchResult) == 0) {
+            echo "Data pengajar tidak ditemukan!" . "\n";
+        } else {
+            // loop untuk menampilkan data pengajar
+            for ($i = 0; $i < count($searchResult); $i++) :
+                showTeacher($searchResult, $classes);
+                // showTeacher($persons, $classes);
+                break;
+            endfor;
+            // break;
+        }
+    }
+    // }
+    return $searchResult;
+}

@@ -37,7 +37,10 @@ function editDataPengajar(array $lecturers, array $classes): array
                             echo "Mengubah data" . ' "' . $lecturers[$i]["name"] . '"' . "\n";
                             // minta inputan nik dari user
                             // echo "\n" . "NIK: ";
-                            $nik = askForNik();
+                            $sentence1 = "NIK: ";
+                            $sentence2 = "Silahkan masukan data NIK dengan benar!";
+                            $nik = askForNumber($sentence1, $sentence2);
+                            // $nik = askForNik();
                             if (isNikExists($lecturers, $nik, $id) == false) {
                                 $lecturers[$i] = askForLectureData($nik, $id);
                                 echo "Data pengajar " .  '"' .  $lecturers[$i]["name"] . '"' .  " telah diperbarui!" . "\n";
