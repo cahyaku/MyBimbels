@@ -35,7 +35,7 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
                             // tampilkan pesan nama kelas yang akan diubah
                             echo "Memperbarui data" . ' "' . $classes[$i]["name"] . '"' . "\n";
                             // tampung hasil di array ke $i
-                            $classes[$i] = askForClassData($id);
+                            $classes[$i] = askForNewClassData($id);
                             break;
                         }
                     }

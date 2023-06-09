@@ -166,7 +166,7 @@ function askForStudentData($nisn, $id): array
     ];
 }
 
-function askForClassData($id): array
+function askForNewClassData($id): array
 {
     $sentence = "Nama Kelas: ";
     $name = askForName($sentence);
@@ -177,11 +177,14 @@ function askForClassData($id): array
     $startedAt = askForStartedDate();
 
     return [
+        // "lecturerId" tidak diset disini
         "id" => $id,
         "name" => $name,
-        "subject" => $subject,
         "price" => $price,
+        "subject" => $subject,
+        "ongoing" => true,
         "startedAt" => $startedAt,
+        "closedAt" => null
     ];
 }
 

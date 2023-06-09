@@ -5,8 +5,8 @@ require_once "Search.php";
 
 function addClassesData(array $classes, array $lecturers): array
 {
-    echo "\n" . "PENAMBHAN DATA KELAS BARU" . "\n";
-    $classes[] = askForClassData(generateId($classes));
+    echo "\n" . "PENAMBAHAN DATA KELAS BARU" . "\n";
+    $newClass = askForNewClassData(generateId($classes));
     // echo "Data kelas telah disimpan!" . "\n"
     $searchResult = searchLecturers($lecturers, $classes);
 
@@ -22,20 +22,11 @@ function addClassesData(array $classes, array $lecturers): array
                 echo "Ordinal number was not found!" . "\n";
                 break;
             } else {
-                $id = $searchResult[$indexLecturers]["id"];
-                // loop untuk menemukan data pengajar yang dipilih
-                for ($i = 0; $i < count($lecturers); $i++) {
-                    // loop untuk menampilkan nama kelas
-                    for ($j = 0; $j < count($classes); $j++) {
-
-                        if ($id == $lecturers[$i]["id"] && $classes[$j]["lecturerId"] == $lecturers[$i]["id"]) {
-                            // if ($id == $lecturers[$i]["id"]) {
-                            echo "Pengajar " . '"' . $lecturers[$i]["name"] . '"' . " di-set untuk kelas " . '"' . $classes[$j]["name"] . '" .' . "\n";
-                            // echo "Pengajar " . '"' . $lecturers[$i]["name"] . '"' . " di-set untuk kelas ini! " . "\n";
-                        }
-                        // break;
-                    }
-                }
+                $newClass["lecturerId"] = $searchResult[$indexLecturers]["id"];
+                $classes[] = $newClass;
+                echo "Pengajar " . $searchResult[$indexLecturers]["name"] . " di-set untuk kelas " .
+                    $newClass["name"];
+                break;
             }
             break;
         }
