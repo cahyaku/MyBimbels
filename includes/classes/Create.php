@@ -25,10 +25,16 @@ function addClassesData(array $classes, array $lecturers): array
                 $id = $searchResult[$indexLecturers]["id"];
                 // loop untuk menemukan data pengajar yang dipilih
                 for ($i = 0; $i < count($lecturers); $i++) {
-                    if ($id == $lecturers[$i]["id"]) {
-                        echo "Data pengajar " . '"' . $lecturers[$i]["name"] . '"' . " di-set untuk kelas ini!" . "\n";
+                    // loop untuk menampilkan nama kelas
+                    for ($j = 0; $j < count($classes); $j++) {
+
+                        if ($id == $lecturers[$i]["id"] && $classes[$j]["lecturerId"] == $lecturers[$i]["id"]) {
+                            // if ($id == $lecturers[$i]["id"]) {
+                            echo "Pengajar " . '"' . $lecturers[$i]["name"] . '"' . " di-set untuk kelas " . '"' . $classes[$j]["name"] . '" .' . "\n";
+                            // echo "Pengajar " . '"' . $lecturers[$i]["name"] . '"' . " di-set untuk kelas ini! " . "\n";
+                        }
+                        // break;
                     }
-                    // break;
                 }
             }
             break;
