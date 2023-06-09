@@ -21,7 +21,6 @@ function addLecturersData(array $lecturers): array
         if (isNikExists(array: $lecturers, nik: $nik, id: null) == true) {
             echo "sorry, NIK: \"$nik\" already exists" . "\n";
         } else {
-
             // simpan data dalam array
             $lecturers[] = askForLectureData($nik, generateId($lecturers));
             echo "Data pengajar telah disimpan!" . "\n";

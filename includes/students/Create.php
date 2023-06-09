@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../Utils.php";
+require_once "StudentUtils.php";
 
 /**
  * fungsi untuk menambahkan data pengajar
@@ -27,7 +28,6 @@ function addStudentsData(array $students): array
                 generateId($students)
             );
             echo "Data siswa telah disimpan!" . "\n";
-
             break;
         }
     }

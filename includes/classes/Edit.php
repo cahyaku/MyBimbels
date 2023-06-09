@@ -27,7 +27,7 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
                     $id = $searchResult[$indexToModify]["id"];
 
                     // loop untuk menemukan data kelas yang akan diubah
-                    for ($i = 0; $i < count($students); $i++) {
+                    for ($i = 0; $i < count($classes); $i++) {
 
                         // cek id jika "id" kelas sama dengan id yang akan diubah dari hasil pecarian
                         // maka lanjut minta inputan data yang baru dari user
@@ -36,7 +36,7 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
                             echo "Memperbarui data" . ' "' . $classes[$i]["name"] . '"' . "\n";
                             // tampung hasil di array ke $i
                             $classes[$i] = askForNewClassData($id);
-                            break;
+                            echo "Data kelas " . '"' . $classes[$i]["name"] . '"' . " telah diperbarui!" . "\n";
                         }
                     }
                 }

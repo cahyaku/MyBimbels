@@ -106,12 +106,12 @@ $lecturers = [
     array(
         "id" => 1,
         "name" => "MALIN",
-        "nik" => "9090",
+        "nik" => 9090,
         "lastEducation" => "D3 Informatika",
     ),
     array(
         "id" => 2,
-        "nik" => "8989",
+        "nik" => 8989,
         "name" => "MARLINTON",
         "lastEducation" => "S1 MATEMATIKA",
     ),
@@ -119,16 +119,16 @@ $lecturers = [
     // pengajar yang belum memiliki kelas bisa dihapus
     array(
         "id" => 3,
-        "nik" => "7878",
+        "nik" => 7878,
         "name" => "NIA",
         "lastEducation" => "S1 FISIKA",
     ),
     // data pengajar yang belum memiliki kelas
     array(
         "id" => 4,
-        "nik" => "09090",
+        "nik" => 1212,
         "name" => "NIAT",
         "lastEducation" => "S1 BIOLOGI",
-    ),
+    )
 ];
 main();

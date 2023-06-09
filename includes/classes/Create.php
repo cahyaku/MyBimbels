@@ -24,8 +24,9 @@ function addClassesData(array $classes, array $lecturers): array
             } else {
                 $newClass["lecturerId"] = $searchResult[$indexLecturers]["id"];
                 $classes[] = $newClass;
-                echo "Pengajar " . $searchResult[$indexLecturers]["name"] . " di-set untuk kelas " .
-                    $newClass["name"];
+                echo "Pengajar " . '"' . $searchResult[$indexLecturers]["name"] . '"' . " di-set untuk kelas " .
+                    '"' . $newClass["name"] . '".' . "\n";
+                echo "Data kelas " . '"' . $newClass["name"] . '"' . " telah disimpan." . "\n";
                 break;
             }
             break;

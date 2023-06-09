@@ -32,7 +32,7 @@ function deleteClasses(array $classes, array $enrollments, array $lecturers, arr
 
                             // cek data kelas yang akan dihapus
                             // hanya kelas yang tidak memiliki siswa yang bisa dihapus (kelas yang belum pernah berjalan)
-                            if (countClasses($classes, $classes[$i]["id"], true) > 0) {
+                            if (countClasses($searchResult, $classes[$i]["id"], true) > 0) {
                                 // tampilkan pesan nama kelas yang akan dihapus 
                                 echo "Maaf data kelas " . $classes[$i]["name"] . " tidak dapat dihapus!" . "\n";
                             } else {
