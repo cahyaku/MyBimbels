@@ -9,14 +9,12 @@ function addClassesData(array $classes, array $lecturers): array
     $newClass = askForNewClassData(generateId($classes));
     // echo "Data kelas telah disimpan!" . "\n"
     $searchResult = searchLecturers($lecturers, $classes);
-
     if (count($searchResult) > 0) {
         while (true) {
             echo "Pilih pengajar yang akan mengajar di kelas ini" . "\n";
             echo "Please type ordinal number above: ";
             $input = getNumeric();
             $indexLecturers = $input - 1;
-
             // cek jika inputan dari user lebih dari jumlah data yang ada dan jika kurang dari atau sama dengan 0
             if ($input > count($searchResult) || $input <= 0) {
                 echo "Ordinal number was not found!" . "\n";

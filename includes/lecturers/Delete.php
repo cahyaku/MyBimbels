@@ -29,11 +29,9 @@ function deleteLecturers(array $lecturers, array $classes): array
 
                         // cek apakah id pengajar sama dengan id yang akan dihapus
                         if ($id == $lecturers[$i]["id"]) {
-
                             // cek data pengajar yang akan dihapus
                             // hanya pengajar yang tidak memiliki kelas yang bisa dihapus
                             if (countClasses($classes, $lecturers[$i]["id"], true) > 0) {
-
                                 // echo "Data pengajar" . ' "' . $lecturers[$indexToDelete]["name"] . '" ';
                                 echo "Data pengajar" . ' "' . $lecturers[$i]["name"] . '" ';
                                 echo "tidak dapat dihapus karena terdapat kelas yang masih berjalan" . "\n";
@@ -53,10 +51,6 @@ function deleteLecturers(array $lecturers, array $classes): array
                 }
             }
         }
-        // else {
-        //     echo "Data was not found";
-        // }
-        // }
     }
     return $lecturers;
 }

@@ -11,7 +11,6 @@ function deleteClasses(array $classes, array $enrollments, array $lecturers, arr
     } else {
         // tampilkan menu pencarian
         $searchResult = searchClasses($enrollments, $classes, $lecturers, $students);
-
         if (count($searchResult) > 0) {
             while (true) {
                 echo "\n" . "Pilih data kelas yang akan dihapus? " . "\n";
@@ -29,10 +28,12 @@ function deleteClasses(array $classes, array $enrollments, array $lecturers, arr
 
                         // cek apakah id kelas sama dengan id yang akan dihapus
                         if ($id == $classes[$i]["id"]) {
+                            // if (countClasses($classes, $students[$i]["id"], true) > 0) {
 
                             // cek data kelas yang akan dihapus
-                            // hanya kelas yang tidak memiliki siswa yang bisa dihapus (kelas yang belum pernah berjalan)
-                            if (countClasses($searchResult, $classes[$i]["id"], true) > 0) {
+                            // kelas yang sudah memiliki siswa tidak dapat dihapus
+                            // hanya kelas yang belum memiliki siswa yang bisa di hapus(kelas yang belum pernah berjalan)
+                            if (countStudents($enrollments, $classes[$i]["id"]) != 0) {
                                 // tampilkan pesan nama kelas yang akan dihapus 
                                 echo "Maaf data kelas " . $classes[$i]["name"] . " tidak dapat dihapus!" . "\n";
                             } else {

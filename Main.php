@@ -21,6 +21,7 @@ require_once __DIR__ . "/includes/classes/Edit.php";
 require_once __DIR__ . "/includes/classes/Search.php";
 require_once __DIR__ . "/includes/classes/Delete.php";
 require_once __DIR__ . "/includes/classes/Enrollments.php";
+require_once __DIR__ . "/includes/classes/Close.php";
 
 /**
  * fungsi untuk menampilkan menu utama 
@@ -171,16 +172,15 @@ function startKelolaKelas()
             echo "cari" . "\n";
             searchClasses($enrollments, $classes, $lecturers, $students);
         } else if ($menu == 2) {
-            // echo "Tambah" . "\n";
             $classes = addClassesData($classes, $lecturers);
         } else if ($menu == 3) {
             echo "edit" . "\n";
             $classes = editClassData($classes, $enrollments, $lecturers, $students);
         } else if ($menu == 4) {
-            echo "Pendaftaran siswa" . "\n";
             $enrollments = pendaftaranSiswa($enrollments, $classes, $lecturers, $students);
         } else if ($menu == 5) {
-            echo " Tutup kelas" . "\n";
+            // echo " Tutup kelas" . "\n";
+            $classes = closeClass($enrollments, $classes, $lecturers, $students);
         } else  if ($menu == 6) {
             echo "Hapus" . "\n";
             $classes = deleteClasses($classes, $enrollments, $lecturers, $students);

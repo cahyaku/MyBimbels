@@ -5,7 +5,6 @@ require_once "Search.php";
 
 function deleteStudents(array $students, array $classes, array $enrollments, array $lecturers): array
 {
-
     if (count($students) == 0) {
         echo "Empty Data" . "\n";
         return $students;

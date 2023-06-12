@@ -28,7 +28,6 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
 
                     // loop untuk menemukan data kelas yang akan diubah
                     for ($i = 0; $i < count($classes); $i++) {
-
                         // cek id jika "id" kelas sama dengan id yang akan diubah dari hasil pecarian
                         // maka lanjut minta inputan data yang baru dari user
                         if ($id == $classes[$i]["id"]) {

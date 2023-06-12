@@ -1,6 +1,6 @@
 <?php
 
-// require_once __DIR__ . "/../../Utils.php";
+// //require_once __DIR__ . "/../../Utils.php";
 
 // /**
 //  * function mengecek NIK ada atau tidak

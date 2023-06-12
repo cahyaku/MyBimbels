@@ -1,35 +1,54 @@
 <?php
 
-// function savePersonsIntoJson(array $persons)
+// function saveLecturersIntoJson(array $lecturers)
 // {
-//     $json = json_encode($persons);
-//     $personsJson = file_put_contents("persons.json", $json);
-// }
-// function saveAcademicsIntoJson(array $academics)
-// {
-//     $json = json_encode($academics);
-//     $academicsJson = file_put_contents("academics.json", $json);
+//     $json = json_encode($lecturers);
+//     $lecturersJson = file_put_contents("lecturers.json", $json);
 // }
 
-// function loadPersonsFromJson()
+// function saveStudentsIntoJson(array $students)
 // {
-//     if (file_exists("persons.json")) {
-//         // $file = "persons.json";
-//         $data = file_get_contents("persons.json");
-//         $persons = json_decode($data, true);
-//         return $persons;
+//     $json = json_encode($students);
+//     $studentsJson = file_put_contents("students.json", $json);
+// }
+
+// function saveClassesIntoJson(array $classes)
+// {
+//     $json = json_encode($classes);
+//     $classesJson = file_put_contents("classes.json", $json);
+// }
+
+// function loadLecturersFromJson()
+// {
+//     if (file_exists("lecturers.json")) {
+//         // $file = "lecturers.json";
+//         $data = file_get_contents("lecturers.json");
+//         $lecturers = json_decode($data, true);
+//         return $lecturers;
 //     } else {
 //         return [];
 //     }
 // }
 
-// function loadAcademicsFromJson()
+// function loadStudentsFromJson()
 // {
-//     if (file_exists("academics.json")) {
-//         // $file = "academics.json";
-//         $data = file_get_contents("academics.json");
-//         $academics = json_decode($data);
-//         return $academics;
+//     if (file_exists("students.json")) {
+//         // $file = "students.json";
+//         $data = file_get_contents("students.json");
+//         $students = json_decode($data);
+//         return $students;
+//     } else {
+//         return [];
+//     }
+// }
+
+// function loadClassesFromJson()
+// {
+//     if (file_exists("classes.json")) {
+//         // $file = "classes.json";
+//         $data = file_get_contents("classes.json");
+//         $classes = json_decode($data);
+//         return $classes;
 //     } else {
 //         return [];
 //     }
@@ -143,7 +162,6 @@ function askForLectureData($nik, $id): array
     $sentence = "Nama pengajar: ";
     $name = askForName($sentence);
     $lastEducation = askForLastEducation();
-
     return [
         "id" => $id,
         "nik" => $nik,
@@ -157,7 +175,6 @@ function askForStudentData($nisn, $id): array
     $sentence = "Nama siswa: ";
     $name = askForName($sentence);
     $lastEducation = askForLastEducation();
-
     return [
         "id" => $id,
         "name" => $name,
@@ -175,7 +192,6 @@ function askForNewClassData($id): array
     $sentence2 = "Silahkan masukan harga kelas!";
     $price = askForNumber($sentence1, $sentence2);
     $startedAt = askForStartedDate();
-
     return [
         // "lecturerId" tidak diset disini
         "id" => $id,
@@ -197,9 +213,12 @@ function askForStartedDate(): string
 {
     while (true) {
         echo "Started Date: ";
-        $startedDate = getString();
+        // inputan tanggal mulai
+        $startedDate = strtotime(getString());
+        // $startedDate = getString();
+
         if ($startedDate == "") {
-            echo "Please type the started date" . "\n";
+            echo "Please type the started date!" . "\n";
         } else {
             return $startedDate;
         }
@@ -310,10 +329,10 @@ function countClasses(array $classes, $lecturerId, $ongoing)
 }
 
 // //function untuk mengecek apakah kelas berjalan atau selesai
-// function kelasBerjalan(array $classes, $lecturerId, $ongoing): bool
+// function kelasBerjalan(array $classes, $personId, $ongoing): bool
 // {
 //     for ($i = 0; $i < count($classes); $i++) {
-//         if ($classes[$i]["ongoing"] == $ongoing && $lecturerId == $classes[$i]["lecturerId"]) {
+//         if ($classes[$i]["ongoing"] == $ongoing && $personId == $classes[$i]["lecturerId"]) {
 //             return true;
 //         }
 //         return false;
@@ -421,7 +440,6 @@ function showStudentsInfo($students, $classes, $enrollments, $lecturers)
                 } else {
                     $closedAt = date('j F Y', $studentClasses[$i]["closedAt"]);
                 }
-
                 // ini untuk waktu saat ini
                 // $startedAt = time();
                 // $date = date('j F Y  H : i');
@@ -444,17 +462,16 @@ function showClassesInfo($enrollments, $classes, $lecturers, $students)
     } else {
         // loop untuk mendapatkan kelas
         for ($i = 0; $i < count($classes); $i++) {
-
             $berjalanStr = "selesai";
             if ($classes[$i]["ongoing"] == true) {
                 $berjalanStr = "berjalan";
             }
             echo "\n" . ($i + 1) . "   - Kelas \"" . $classes[$i]["name"] . "\"" .  " - " . $classes[$i]["subject"] . " ($berjalanStr)" . PHP_EOL;
-
             // tampilkan nama kelas, mata pelajaran dan keterangan apakah kelas masih berjalan atau tidak
             // loop untuk mendapatkan nama pengajar
             for ($j = 0; $j < count($lecturers); $j++) {
                 if ($lecturers[$j]["id"] == $classes[$i]["lecturerId"]) {
+                    // if ($lecturers[$j]["id"] == $classes[$i]["lecturerId]") {
                     // tampilkan nama pengajar 
                     echo "      - Pengajar " . $lecturers[$j]["name"] . PHP_EOL;
                 }
