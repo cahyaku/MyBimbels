@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../Utils.php";
-// require_once "StudentUtils.php";
+require_once "StudentUtils.php";
 require_once "Search.php";
 
 function editDataStudents(array $students, array $classes, $enrollments, $lecturers): array
@@ -55,5 +55,6 @@ function editDataStudents(array $students, array $classes, $enrollments, $lectur
         }
         // }
     }
+    saveDataIntoJson($students, JSON_STUDENTS);
     return $students;
 }

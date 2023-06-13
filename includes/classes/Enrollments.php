@@ -30,7 +30,7 @@ function pendaftaranSiswa(array $enrollments, array $classes, array $lecturers, 
         }
     }
 
-    // pencarian siswa 
+    // penambahan data siswa 
     if (count($students) == 0) {
         echo "Empty Data" . "\n";
     } else {
@@ -50,6 +50,8 @@ function pendaftaranSiswa(array $enrollments, array $classes, array $lecturers, 
             return $enrollments;
         }
     }
+    // saveClassesIntoJson($classes);
+    // return $enrollments;
 }
 
 /**

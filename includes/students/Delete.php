@@ -50,5 +50,6 @@ function deleteStudents(array $students, array $classes, array $enrollments, arr
             }
         }
     }
+    saveDataIntoJson($students, JSON_STUDENTS);
     return $students;
 }

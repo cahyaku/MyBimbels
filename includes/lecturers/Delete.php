@@ -52,5 +52,7 @@ function deleteLecturers(array $lecturers, array $classes): array
             }
         }
     }
+    saveDataIntoJson($lecturers, JSON_LECTURERS);
+
     return $lecturers;
 }

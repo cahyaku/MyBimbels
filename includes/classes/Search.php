@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../Utils.php";
+require_once "ClassUtils.php";
 
 /**
  * function untuk search kelas siswa 
@@ -12,6 +13,7 @@ function searchClasses(array $enrollments, array $classes, array  $lecturers, ar
     if (count($classes) == 0) {
         echo "empty data" . "\n";
     } else {
+        echo "\nPENCARIAN DATA KELAS";
         // while (true) {
         // meminta inputan nama nama kelas dari user
         echo "\n" . "Nama kelas: ";

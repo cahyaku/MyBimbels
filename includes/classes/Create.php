@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../Utils.php";
+require_once "ClassUtils.php";
 require_once "Search.php";
 
 function addClassesData(array $classes, array $lecturers): array
@@ -30,5 +31,6 @@ function addClassesData(array $classes, array $lecturers): array
             break;
         }
     }
+    saveDataIntoJson($classes, JSON_CLASSES);
     return $classes;
 }

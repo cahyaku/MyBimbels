@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../../Utils.php";
+require_once "LecturerUtils.php";
 
 /**
  * fungsi untuk menambahkan data pengajar
@@ -23,11 +24,14 @@ function addLecturersData(array $lecturers): array
         } else {
             // simpan data dalam array
             $lecturers[] = askForLectureData($nik, generateId($lecturers));
+
             echo "Data pengajar telah disimpan!" . "\n";
             // echo "Data pengajar " . $lecturers["name"] .  "telah disimpan!" . "\n"
             // return $lecturers;
             break;
         }
     }
+    saveDataIntoJson($lecturers, JSON_LECTURERS);
+
     return $lecturers;
 }

@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../../Utils.php";
 require_once "Search.php";
+require_once "LecturerUtils.php";
+
 
 function editDataPengajar(array $lecturers, array $classes): array
 {
@@ -57,5 +59,6 @@ function editDataPengajar(array $lecturers, array $classes): array
         }
         // }
     }
+    saveDataIntoJson($lecturers, JSON_LECTURERS);
     return $lecturers;
 }

@@ -8,12 +8,14 @@ require_once __DIR__ . "/includes/lecturers/Create.php";
 require_once __DIR__ . "/includes/lecturers/Edit.php";
 require_once __DIR__ . "/includes/lecturers/Delete.php";
 require_once __DIR__ . "/includes/lecturers/Search.php";
+require_once __DIR__ . "/includes/lecturers/LecturerUtils.php";
 
 // siswa
 require_once __DIR__ . "/includes/students/Create.php";
 require_once __DIR__ . "/includes/students/Edit.php";
 require_once __DIR__ . "/includes/students/Delete.php";
 require_once __DIR__ . "/includes/students/Search.php";
+require_once __DIR__ . "/includes/students/StudentUtils.php";
 
 // classes
 require_once __DIR__ . "/includes/classes/Create.php";
@@ -22,12 +24,14 @@ require_once __DIR__ . "/includes/classes/Search.php";
 require_once __DIR__ . "/includes/classes/Delete.php";
 require_once __DIR__ . "/includes/classes/Enrollments.php";
 require_once __DIR__ . "/includes/classes/Close.php";
+require_once __DIR__ . "/includes/classes/ClassUtils.php";
 
 /**
  * fungsi untuk menampilkan menu utama 
  */
 function showMainMenu()
 {
+    // clearScreen();
     echo "\n" . "MyBimbels:" . "\n";
     echo "  1. Pengajar" . "\n";
     echo "  2. Siswa" . "\n";
@@ -41,6 +45,7 @@ function showMainMenu()
  */
 function kelolaPengajar()
 {
+    // clearScreen();
     echo  "\n" . "Kelola pengajar" . "\n";
     echo    "1. Cari" . "\n";
     echo    "2. Tambah" . "\n";
@@ -90,6 +95,7 @@ function startKelolaPengajar()
  */
 function kelolaSiswa()
 {
+    // clearScreen();
     echo  "\n" . "Kelola Siswa" . "\n";
     echo    "1. Cari" . "\n";
     echo    "2. Tambah" . "\n";
@@ -109,23 +115,22 @@ function startKelolaSiswa()
     global $classes;
     global $enrollments;
     global $lecturers;
-    // global $lecturers;
 
     $exit = false;
     while ($exit == false) {
         kelolaSiswa();
         $menu = getNumeric();
         if ($menu == 1) {
-            echo "cari";
+            // echo "cari";
             searchSiswa($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 2) {
             // echo "tambahkan data siswa" . "\n";
             $students = addStudentsData($students);
         } else if ($menu == 3) {
-            echo "edit person" . "\n";
+            // echo "edit person" . "\n";
             $students = editDataStudents($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 4) {
-            echo "hapus" . "\n";
+            // echo "hapus" . "\n";
             $students = deleteStudents($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 5) {
             showAllStudents($students, $classes);
@@ -143,6 +148,7 @@ function startKelolaSiswa()
  */
 function kelolaKelas()
 {
+    // clearScreen();
     echo "\n" . "Kelola kelas" . "\n";
     echo "1. Cari" . "\n";
     echo "2. Tambah" . "\n";
@@ -160,6 +166,7 @@ function kelolaKelas()
  */
 function startKelolaKelas()
 {
+    // clearScreen();
     global $students;
     global $classes;
     global $enrollments;
@@ -169,12 +176,12 @@ function startKelolaKelas()
         kelolaKelas();
         $menu = getNumeric();
         if ($menu == 1) {
-            echo "cari" . "\n";
+            // echo "cari" . "\n";
             searchClasses($enrollments, $classes, $lecturers, $students);
         } else if ($menu == 2) {
             $classes = addClassesData($classes, $lecturers);
         } else if ($menu == 3) {
-            echo "edit" . "\n";
+            // echo "edit" . "\n";
             $classes = editClassData($classes, $enrollments, $lecturers, $students);
         } else if ($menu == 4) {
             $enrollments = pendaftaranSiswa($enrollments, $classes, $lecturers, $students);
@@ -182,7 +189,7 @@ function startKelolaKelas()
             // echo " Tutup kelas" . "\n";
             $classes = closeClass($enrollments, $classes, $lecturers, $students);
         } else  if ($menu == 6) {
-            echo "Hapus" . "\n";
+            // echo "Hapus" . "\n";
             $classes = deleteClasses($classes, $enrollments, $lecturers, $students);
         } else if ($menu == 7) {
             echo " show all classes data \n";
@@ -210,10 +217,13 @@ function main()
         // minta inputan untuk main menu
         $menu = getNumeric();
         if ($menu == 1) {
+            clearScreen();
             startKelolaPengajar($lecturers);
         } else if ($menu == 2) {
+            clearScreen();
             startKelolaSiswa($students);
         } else if ($menu == 3) {
+            clearScreen();
             startKelolaKelas($classes);
         } else if ($menu == 4) {
             echo "exit";

@@ -52,5 +52,7 @@ function deleteClasses(array $classes, array $enrollments, array $lecturers, arr
             }
         }
     }
+    saveDataIntoJson($classes, JSON_CLASSES);
+
     return $classes;
 }

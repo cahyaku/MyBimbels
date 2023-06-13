@@ -33,9 +33,9 @@ function closeClass(array $enrollments, array $classes, array  $lecturers, array
                         $sentence = "Yakin untuk menutup kelas " . ' "' . $searchClass[$target]["name"] . '" ' . "(y/n)?";
                         if (isContinue($sentence) == true) {
                             // tutup kelas yang dipilih 
-                            // $closeClass[] = $searchClass[$target]["ongoing"] = false;
-                            $classes[$i] = $searchClass[$target]["ongoing"] = false;
+                            $classes[$i]["ongoing"] = false;
                             echo "Kelas " . '"' . $searchClass[$target]["name"] . '"' .  " telah ditutup!" . "\n";
+                            saveDataIntoJson($classes, JSON_CLASSES);
                         }
                         break;
                     }

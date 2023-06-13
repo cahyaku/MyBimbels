@@ -31,5 +31,7 @@ function addStudentsData(array $students): array
             break;
         }
     }
+    saveDataIntoJson($students, JSON_STUDENTS);
+
     return $students;
 }
