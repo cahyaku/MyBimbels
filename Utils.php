@@ -38,10 +38,7 @@ function getNumeric(): int
 function getString(): string
 {
     $input = trim(fgets(STDIN));
-    // if (ctype_alpha($input)) {
     return (string) $input;
-    // }
-    // return "";
 }
 
 function clearScreen()
@@ -75,12 +72,13 @@ function askForNumber($sentence1, $sentence2): int
 /**
  * function untuk menanyakan nama 
  * 
- * @return string nama yang telah diinputkan 
+ * @param string $sentence berisi kalimat yang akan ditampilkan sebelum meminta inputan nama ke user
+ * @return string berisi hasil inputan nama yang sudah dimasukan
+ * 
  */
-function askForName($sentence): string
+function askForName(string $sentence): string
 {
     while (true) {
-        // echo "name : ";
         echo $sentence;
         $name = getString();
         if ($name == "") {
@@ -102,7 +100,7 @@ function askForName($sentence): string
 function askForLastEducation(): string
 {
     while (true) {
-        echo "Last Education: ";
+        echo "Pendidikan terakhir: ";
         $lastEducation = getString();
         if ($lastEducation == "") {
             echo "Please type your last education" . "\n";
@@ -134,6 +132,9 @@ function isContinue($sentence): bool
 
 /**
  * function untuk menghitung jumlah kelas
+ * 
+ * @param array $classes berisi data kelas yang ada
+ * @param $lecturerId berisi int dari "lectuerId"
  */
 function countClasses(array $classes, $lecturerId, $ongoing)
 {
@@ -147,7 +148,7 @@ function countClasses(array $classes, $lecturerId, $ongoing)
 }
 
 /**
- * function untuk meghitung jumlah omzet
+ * function untuk menghitung jumlah omzet
  * 
  * @param array $classes berisi keseluruhan dari data  kelas yang ada 
  * @param $lecturerId berisikan int dari "lecturerId"
@@ -165,7 +166,7 @@ function countRevenue(array $classes, $lecturerId)
 }
 
 /**
- * function untuk mencari jumlah siswa
+ * function untuk men dapatkan jumlah siswa dari array $enrollments
  * 
  * @param array $enrollments berisi data dari semua pendaftaran yang ada
  * @param int $classId int dari classId
@@ -180,7 +181,6 @@ function countStudents(array $enrollments, int $classId)
     }
     return $countStudents;
 }
-
 
 /**
  * function untuk mendapatkan array element (siswa) dari array $enrollments yang key "classId" nya bernilai $classId
@@ -269,9 +269,7 @@ function showStudentsInfo(array $students, array $classes, array $enrollments, a
                 } else {
                     $closedAt = date('j F Y', $studentClasses[$i]["closedAt"]);
                 }
-                // ini untuk waktu saat ini
-                // $startedAt = time();
-                // $date = date('j F Y  H : i');
+
                 // cek tanggal mulai
                 $date = date('j F Y', $classes[$i]["startedAt"]);
                 echo "        - " . $date . "  - (" . $closedAt . ")" . "\n";

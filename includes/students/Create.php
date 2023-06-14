@@ -27,11 +27,11 @@ function addStudentsData(array $students): array
                 $nisn,
                 generateId($students)
             );
-            echo "Data siswa telah disimpan!" . "\n";
+            // echo "Data siswa " . '"' . $students[count($students) - 1]["name"] . '"'. " telah disimpan!" . "\n";
+            echo "Data siswa " . '"' . end($students)["name"] . '"' . " telah disimpan!" . "\n";
             break;
         }
     }
     saveDataIntoJson($students, JSON_STUDENTS);
-
     return $students;
 }

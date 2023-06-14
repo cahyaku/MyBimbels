@@ -17,8 +17,7 @@ function editDataPengajar(array $lecturers, array $classes): array
         if (count($searchResult) > 0) {
             while (true) {
                 // minta inputan data yang akan diubah dari user
-                echo "\n" . "Data pengajar yang akan diubah ? " . "\n";
-                echo "Please type ordinal number above: ";
+                echo "\n" . "Data pengajar yang akan diubah: ";
                 $input = getNumeric();
                 $indexToModify = $input - 1;
 

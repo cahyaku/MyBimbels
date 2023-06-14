@@ -3,28 +3,6 @@
 require_once __DIR__ . "/../../Utils.php";
 
 /**
- * function untuk menampilkan semua data kelas yang ada 
- * 
- * @param array $classes berisi data siswa yang akan diproses
- */
-function showAllClasses(array $classes)
-{
-    if (count($classes) == 0) {
-        echo "Empty Data";
-    } else {
-        for ($i = 0; $i < count($classes); $i++) {
-            echo "\n" . ($i + 1) .  ". Nama kelas: " . $classes[$i]["name"] . "\n";
-            echo "    - Nama matapelajaran: " . $classes[$i]["subject"] . "\n";
-            echo "    - Harga Rp " . number_format($classes[$i]["price"]) . "\n";
-            $date = date('j F Y', $classes[$i]["startedAt"]);
-            // echo "    - Tanggal dimulai: " . $classes[$i]["startedAt"] . "\n";
-            echo "    - Tanggal dimulai: " . $date . "\n";
-        }
-        echo "\n";
-    }
-}
-
-/**
  * function untuk menanyakan nama mata pelajaran
  * 
  * @return string nama yang telah diinputkan 

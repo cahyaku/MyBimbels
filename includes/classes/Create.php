@@ -18,7 +18,7 @@ function addClassesData(array $classes, array $lecturers): array
             $indexLecturers = $input - 1;
             // cek jika inputan dari user lebih dari jumlah data yang ada dan jika kurang dari atau sama dengan 0
             if ($input > count($searchResult) || $input <= 0) {
-                echo "Ordinal number was not found!" . "\n";
+                echo "Nomor yang dipilih tidak ditemukan!" . "\n";
                 break;
             } else {
                 $newClass["lecturerId"] = $searchResult[$indexLecturers]["id"];

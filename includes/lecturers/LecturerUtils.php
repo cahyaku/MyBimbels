@@ -41,16 +41,15 @@ function showTeacher(array $lecturers, array $classes)
     } else {
         for ($i = 0; $i < count($lecturers); $i++) {
             echo "\n" . ($i + 1) . ". " . "Name: " . $lecturers[$i]["name"] . " (NIK: " . $lecturers[$i]["nik"] . ") \n";
-            // echo "Last education; " . $lecturers[$i]["lastEducation"] . "\n";
-
+            // cek jumlah kelas yang berjalan
             $countBerjalan = countClasses($classes, $lecturers[$i]["id"], true);
+            // cek jumlah kelas yang tidak berjalan
             $countDiTutup = countClasses($classes, $lecturers[$i]["id"], false);
             $omzet = countRevenue($classes, $lecturers[$i]["id"]);
             echo "   - " . $countBerjalan . " kelas berjalan" . "\n";
             echo "   - " . $countDiTutup . " kelas ditutup" . "\n";
             echo "   - Omzet Rp. " . $omzet . "\n";
         }
-        // break;
         echo "\n";
     }
 }
@@ -67,4 +66,3 @@ function askForLectureData($nik, $id): array
         "lastEducation" => $lastEducation,
     ];
 }
-

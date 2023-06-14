@@ -36,10 +36,8 @@ function searchClasses(array $enrollments, array $classes, array  $lecturers, ar
                 showClassesInfo($enrollments, $searchResult, $lecturers, $students);
                 break;
             endfor;
-            // break;
         }
     }
-    // }
     return $searchResult;
 }
 

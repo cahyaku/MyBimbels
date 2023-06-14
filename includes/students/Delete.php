@@ -13,8 +13,7 @@ function deleteStudents(array $students, array $classes, array $enrollments, arr
         $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
         if (count($searchResult) > 0) {
             while (true) {
-                echo "\n" . "Pilih data siswa yang akan dihapus? " . "\n";
-                echo "Please type ordinal number above: ";
+                echo "\n" . "Pilih data siswa yang akan dihapus:" . "\n";
                 $input = getNumeric();
                 $indexToDelete = $input - 1;
 
@@ -33,7 +32,7 @@ function deleteStudents(array $students, array $classes, array $enrollments, arr
                             // hanya siswa yang tidak memiliki kelas yang bisa dihapus
                             if (countClasses($classes, $students[$i]["id"], true) > 0) {
                                 // echo "Data siswa" . ' "' . $students[$indexToDelete]["name"] . '" ';
-                                echo "Maaf data siswa " . $students[$indexToDelete]["name"] . " tidak dapat dihapus karena sudah memiliki data kelas" . "\n";
+                                echo "Maaf data siswa " . $students[$indexToDelete]["name"] . " tidak dapat dihapus karena sudah penah mengikuti kelas" . "\n";
                             } else {
                                 $sentence = "Yakin untuk menghapus data siswa " . ' "' . $students[$indexToDelete]["name"] . '" ' . "(y/n)?";
                                 if (isContinue($sentence) == true) {

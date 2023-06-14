@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../../Utils.php";
 require_once "Search.php";
 
+
 function pendaftaranSiswa(array $enrollments, array $classes, array $lecturers, array $students)
 {
     $classId = -1;
@@ -20,7 +21,7 @@ function pendaftaranSiswa(array $enrollments, array $classes, array $lecturers, 
                 $input = getNumeric();
                 $target = $input - 1;
                 if ($input > count($searchClass) || $input <= 0) {
-                    echo "Ordinal number was not found!" . "\n";
+                    echo "Nomor yang dipilih tidak ditemukan!" . "\n";
                 } else {
                     $classId = $searchClass[$target]["id"];
                     echo "Menambahkan siswa untuk kelas " . '"' . $searchClass[$target]["name"] . '".' . "\n";
@@ -44,14 +45,13 @@ function pendaftaranSiswa(array $enrollments, array $classes, array $lecturers, 
                     "studentId" => $studentId,
                 ];
             }
+
             // tampilkan nama siswa dan kelas yang dipilih 
             echo "Siswa " . '"' . $studentId . '"' . " telah ditambahkan pada kelas " .  '"' . $searchClass[$target]["name"] . '".' . "\n";
             echo "Data kelas " . '"' . $searchClass[$target]["name"] . '"' . " telah diperbarui!" . "\n";
             return $enrollments;
         }
     }
-    // saveClassesIntoJson($classes);
-    // return $enrollments;
 }
 
 /**
@@ -74,7 +74,6 @@ function askForStudent(array $students, array $classes, array  $enrollments, arr
                 // break;
             } else {
                 return $searchResult[$target]["id"];
-                // echo  $searchResult[$target]["name"];
             }
             // }
         }

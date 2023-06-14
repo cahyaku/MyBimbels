@@ -15,14 +15,13 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
         if (count($searchClass) > 0) {
             while (true) {
                 // minta inputan data yang akan diubah dari user
-                echo "\n" . "Data kelas yang akan diubah ? " . "\n";
-                echo "Please type ordinal number above: ";
+                echo "\n" . "Data kelas yang akan diperbarui: ";
                 $input = getNumeric();
                 $indexToModify = $input - 1;
 
                 // cek jika inputan dari user lebih dari jumlah data yang ada dan jika kurang dari atau sama dengan 0
                 if ($input > count($searchClass) || $input <= 0) {
-                    echo "Ordinal number was not found!" . "\n";
+                    echo "Nomor yang dipilih tidak ditemukan!" . "\n";
                     break;
                 } else {
                     $id = $searchClass[$indexToModify]["id"];
@@ -32,7 +31,7 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
                         // maka lanjut minta inputan data yang baru dari user
                         if ($id == $classes[$i]["id"]) {
                             // tampilkan pesan nama kelas yang akan diubah
-                            echo "Memperbarui data" . ' "' . $classes[$i]["name"] . '"' . "\n";
+                            echo "Memperbarui kelas" . ' "' . $classes[$i]["name"] . '"' . "\n";
                             // tampung hasil di array ke $i
                             $updateClassData = askForNewClassData($id); // search untuk menemukan pengajar
 
@@ -40,13 +39,12 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
                             $seachLecturers = searchLecturers($lecturers, $classes);
                             if (count($seachLecturers) > 0) {
                                 while (true) {
-                                    echo "Pilih pengajar yang akan mengajar di kelas ini" . "\n";
-                                    echo "Please type ordinal number above: ";
+                                    echo "Pilih pengajar yang akan mengajar di kelas ini: ";
                                     $input = getNumeric();
                                     $indexLecturers = $input - 1;
                                     // cek jika inputan dari user lebih dari jumlah data yang ada dan jika kurang dari atau sama dengan 0
                                     if ($input > count($seachLecturers) || $input <= 0) {
-                                        echo "Ordinal number was not found!" . "\n";
+                                        echo "Nomor yang dipilih tidak ditemukan!" . "\n";
                                         break;
                                     } else {
                                         $updateClassData["lecturerId"] = $seachLecturers[$indexLecturers]["id"];
@@ -55,7 +53,7 @@ function editClassData(array $classes, array $enrollments, array $lecturers, arr
 
                                         echo "Pengajar " . '"' . $seachLecturers[$indexLecturers]["name"] . '"' . " di-set untuk kelas " .
                                             '"' . $classes[$i]["name"] . '".' . "\n";
-                                        echo "Data kelas " . '"' . $classes[$i]["name"] . '"' . " telah disimpan." . "\n";
+                                        echo "Data kelas " . '"' . $classes[$i]["name"] . '"' . " telah diperbarui." . "\n";
                                         break;
                                     }
                                     break;

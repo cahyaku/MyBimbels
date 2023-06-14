@@ -32,14 +32,8 @@ function searchSiswa(array $students, array $classes, array  $enrollments, array
         if (count($searchResult) == 0) {
             echo "Data siswa tidak ditemukan!" . "\n";
         } else {
-            // loop untuk menampilkan data
-            // for ($i = 0; $i < count($searchResult); $i++) :
             showStudentsInfo($searchResult, $classes, $enrollments, $lecturers);
-            // break;
-            // endfor;
-            // break;
         }
-        // }
     }
     return $searchResult;
 }

@@ -15,16 +15,13 @@ function closeClass(array $enrollments, array $classes, array  $lecturers, array
         echo "\n" . "PENUTUPAN KELAS";
         // cek jika kelas masih berjalan maka bisa ditutup
         // hanya kelas yang masih berjalan yang akan di tampilkan 
-        // foreach ($classes as $key) {
-        //     while ($key["ongoing"] == true) {
         $searchClass = searchKelas($enrollments, $classes, $lecturers, $students);
         if (count($searchClass) > 0) {
-            // while (true) {
             echo "\n" . "Pilih kelas yang akan ditutup: ";
             $input = getNumeric();
             $target = $input - 1;
             if ($input > count($searchClass) || $input <= 0) {
-                echo "Ordinal number was not found!" . "\n";
+                echo "Nomor yang dipilih tidak ditemukan!" . "\n";
             } else {
                 // dapat id dari inputan user
                 $id = $searchClass[$target]["id"];
@@ -42,9 +39,6 @@ function closeClass(array $enrollments, array $classes, array  $lecturers, array
                 }
             }
         }
-        // }
     }
     return $classes;
 }
-    // }
-// }

@@ -18,26 +18,6 @@ function isNisnExists(array $array, int $nisn, $id): bool
     return false;
 }
 
-/**
- * function untuk show data students
- * 
- * @param array $students berisi data siswa yang akan diproses
- * 
- */
-function showAllStudents(array $students)
-{
-    if (count($students) == 0) {
-        echo "Empty Data";
-    } else {
-        for ($i = 0; $i < count($students); $i++) {
-            echo "\n" . "Name: " . $students[$i]["name"] . "\n";
-            echo "NISN: " . $students[$i]["nisn"] . "\n";
-            echo "Last Education: " . $students[$i]["lastEducation"] . "\n";
-        }
-        echo "\n";
-    }
-}
-
 function askForStudentData($nisn, $id): array
 {
     $sentence = "Nama siswa: ";

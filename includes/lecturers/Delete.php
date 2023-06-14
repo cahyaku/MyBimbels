@@ -14,8 +14,7 @@ function deleteLecturers(array $lecturers, array $classes): array
         $searchResult = searchPengajar($lecturers, $classes);
         if (count($searchResult) > 0) {
             while (true) {
-                echo "\n" . "Pilih data pengajar yang akan dihapus? " . "\n";
-                echo "Please type ordinal number above: ";
+                echo "\n" . "Pilih data pengajar yang akan dihapus: ";
                 $input = getNumeric();
                 $indexToDelete = $input - 1;
 
@@ -34,7 +33,7 @@ function deleteLecturers(array $lecturers, array $classes): array
                             if (countClasses($classes, $lecturers[$i]["id"], true) > 0) {
                                 // echo "Data pengajar" . ' "' . $lecturers[$indexToDelete]["name"] . '" ';
                                 echo "Data pengajar" . ' "' . $lecturers[$i]["name"] . '" ';
-                                echo "tidak dapat dihapus karena terdapat kelas yang masih berjalan" . "\n";
+                                echo "tidak dapat dihapus karena terdapat kelas berjalan" . "\n";
                             } else {
                                 // $sentence = "Yakin untuk menghapus data pengajar" . ' "' . $lecturers[$indexToDelete]["name"] . '" ' . "(y/n)?";
                                 $sentence = "Yakin untuk menghapus data pengajar" . ' "' . $lecturers[$i]["name"] . '" ' . "(y/n)?";

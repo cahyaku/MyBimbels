@@ -20,7 +20,7 @@ function deleteClasses(array $classes, array $enrollments, array $lecturers, arr
 
                 // cek jika yang diinputan oleh user lebih dari jumlah data yang ada dan lebih besar dari 0
                 if ($input > count($searchResult) || $input <= 0) {
-                    echo "Ordinal number was not found!" . "\n";
+                    echo "Nomor yang dipilih tidak ditemukan!" . "\n";
                     break;
                 } else {
                     $id = $searchResult[$indexToDelete]["id"];
@@ -32,7 +32,7 @@ function deleteClasses(array $classes, array $enrollments, array $lecturers, arr
 
                             // cek data kelas yang akan dihapus
                             // kelas yang sudah memiliki siswa tidak dapat dihapus
-                            // hanya kelas yang belum memiliki siswa yang bisa di hapus(kelas yang belum pernah berjalan)
+                            // hanya kelas yang belum memiliki siswa yang bisa dihapus(kelas yang belum pernah berjalan)
                             if (countStudents($enrollments, $classes[$i]["id"]) != 0) {
                                 // tampilkan pesan nama kelas yang akan dihapus 
                                 echo "Maaf data kelas " . $classes[$i]["name"] . " tidak dapat dihapus!" . "\n";

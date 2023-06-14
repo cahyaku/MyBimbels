@@ -16,8 +16,7 @@ function editDataStudents(array $students, array $classes, $enrollments, $lectur
         if (count($searchResult) > 0) {
             while (true) {
                 // minta inputan data yang akan diubah dari user
-                echo "\n" . "Data siswa yang akan diubah ? " . "\n";
-                echo "Please type ordinal number above: ";
+                echo "\n" . "Data siswa yang akan diperbarui: ";
                 $input = getNumeric();
                 $indexToModify = $input - 1;
 
