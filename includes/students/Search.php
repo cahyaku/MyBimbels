@@ -9,7 +9,7 @@ require_once "Utils.php";
  * @param array $persons data dari siswa yang akan diproses
  * @param array $classes data kelas yang dimiliki oleh siswa
  */
-function searchSiswa(array $students, array $classes, array  $enrollments, array $lecturers): array
+function searchStudent(array $students, array $classes, array  $enrollments, array $lecturers): array
 {
     if (count($students) == 0) {
         echo "empty data" . "\n";

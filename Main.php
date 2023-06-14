@@ -108,13 +108,13 @@ function startKelolaSiswa()
         kelolaSiswa();
         $menu = getNumeric();
         if ($menu == 1) {
-            searchSiswa($students, $classes, $enrollments, $lecturers);
+            searchStudent($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 2) {
-            $students = addStudentsData($students);
+            $students = addStudent($students);
         } else if ($menu == 3) {
-            $students = editDataStudents($students, $classes, $enrollments, $lecturers);
+            $students = editStudent($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 4) {
-            $students = deleteStudents($students, $classes, $enrollments, $lecturers);
+            $students = deleteStudent($students, $classes, $enrollments, $lecturers);
         } else if ($menu == 5) {
             echo "Menu Utama" . "\n";
             $exit = true;

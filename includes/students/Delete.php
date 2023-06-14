@@ -3,14 +3,14 @@
 require_once __DIR__ . "/../../Utils.php";
 require_once "Search.php";
 
-function deleteStudents(array $students, array $classes, array $enrollments, array $lecturers): array
+function deleteStudent(array $students, array $classes, array $enrollments, array $lecturers): array
 {
     if (count($students) == 0) {
         echo "Empty Data" . "\n";
         return $students;
     } else {
         // tampilkan menu pencarian
-        $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
+        $searchResult = searchStudent($students, $classes, $enrollments, $lecturers);
         if (count($searchResult) > 0) {
             while (true) {
                 echo "\n" . "Pilih data siswa yang akan dihapus:" . "\n";

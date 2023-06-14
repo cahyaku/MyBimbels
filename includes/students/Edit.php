@@ -4,7 +4,7 @@ require_once __DIR__ . "/../../Utils.php";
 require_once "StudentUtils.php";
 require_once "Search.php";
 
-function editDataStudents(array $students, array $classes, $enrollments, $lecturers): array
+function editStudent(array $students, array $classes, $enrollments, $lecturers): array
 {
     // while (true) {
     if (count($students) == 0) {
@@ -12,7 +12,7 @@ function editDataStudents(array $students, array $classes, $enrollments, $lectur
         return $students;
     } else {
         // tampilkan menu pencarian, untuk mencari nama siswa yang akan diubah 
-        $searchResult = searchSiswa($students, $classes, $enrollments, $lecturers);
+        $searchResult = searchStudent($students, $classes, $enrollments, $lecturers);
         if (count($searchResult) > 0) {
             while (true) {
                 // minta inputan data yang akan diubah dari user

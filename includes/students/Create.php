@@ -10,7 +10,7 @@ require_once "StudentUtils.php";
  * @return array data siswa yang telah ditambahkan
  * 
  */
-function addStudentsData(array $students): array
+function addStudent(array $students): array
 {
     while (true) {
         // meminta inputan NISN
